@@ -1,0 +1,124 @@
+/* floating label */
+.FloatingLabel {
+  color: #6b7280;
+  font-size: 1.25em;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.FloatingLabel i {
+  color: var(--prim-color);
+}
+.floating input {
+  border-radius: 20px;
+  border: 1px solid rgba(34, 37, 42, 0.35) !important;
+  padding-bottom: 5px !important;
+  background-color: var(--bg-color) !important;
+  color: var(--input-text-color) !important;
+}
+.floating input:focus {
+  box-shadow: 0 0 0 0.25rem #a200007e !important;
+  border: none !important;
+}
+/* date input */
+.floating input[type="date"]::-webkit-calendar-picker-indicator {
+  color: var(--prim-color);
+  filter: invert(42%) sepia(19%) saturate(467%) hue-rotate(130deg)
+    brightness(90%) contrast(88%);
+  cursor: pointer;
+  -webkit-filter: invert(42%) sepia(19%) saturate(467%) hue-rotate(130deg)
+    brightness(90%) contrast(88%);
+}
+
+.floating input[type="date"]::-moz-calendar-picker-indicator {
+  color: var(--prim-color);
+  filter: invert(42%) sepia(19%) saturate(467%) hue-rotate(130deg)
+    brightness(90%) contrast(88%);
+  cursor: pointer;
+  -webkit-filter: invert(42%) sepia(19%) saturate(467%) hue-rotate(130deg);
+}
+/* Arabic */
+/*Auto fill*/
+.floating > .floatingInput:-webkit-autofill ~ label ,
+/* Focus */
+.floating > .floatingInput:focus ~ label,
+.floating > .floatingInput:not(:placeholder-shown) ~ label,
+.floating > .floatingSelect ~ label {
+  color: var(--prim-color);
+  transform: scale(0.64) translateY(-16%) translateX(0%) !important;
+  -webkit-transform: scale(0.64) translateY(-16%) translateX(0%) !important;
+  -moz-transform: scale(0.64) translateY(-16%) translateX(0%) !important;
+  -ms-transform: scale(0.64) translateY(-16%) translateX(0%) !important;
+  -o-transform: scale(0.64) translateY(-16%) translateX(0%) !important;
+}
+/* Password icon style */
+/* English */
+/*Auto fill*/
+/* .floating:has(input[dir="rtl"]) > .floatingInput:-webkit-autofill ~ label, */
+/* Focus */
+/* .floating:has(input[dir="rtl"]) > .floatingInput:focus ~ label,
+.floating:has(input[dir="rtl"])> .floatingInput:not(:placeholder-shown)~ label,
+.floating:has(input[dir="rtl"]) > .floatingSelect ~ label {
+  transform: scale(0.64) translateY(-16%) translateX(0%) !important;
+  -webkit-transform: scale(0.64) translateY(-16%) translateX(0%) !important;
+  -moz-transform: scale(0.64) translateY(-16%) translateX(0%) !important;
+  -ms-transform: scale(0.64) translateY(-16%) translateX(0%) !important;
+  -o-transform: scale(0.64) translateY(-16%) translateX(0%) !important;
+} */
+.floating .passwordIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--prim-color);
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s, opacity 0.3s;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: color 0.3s, opacity 0.3s;
+  -moz-transition: color 0.3s, opacity 0.3s;
+  -ms-transition: color 0.3s, opacity 0.3s;
+  -o-transition: color 0.3s, opacity 0.3s;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+.floating input:focus ~ .passwordIcon {
+  opacity: 1;
+  visibility: visible;
+}
+
+.floating input:not(:placeholder-shown) ~ .passwordIcon {
+  opacity: 1;
+  visibility: visible;
+}
+
+.floating .passwordIcon:hover {
+  color: var(--prim-color);
+
+}
+
+.floating .passwordIcon {
+  color: var(--second-color);
+  transition: color 0.3s;
+  transition-property: color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  -webkit-transition: color 0.3s;
+  -moz-transition: color 0.3s;
+  -ms-transition: color 0.3s;
+  -o-transition: color 0.3s;
+}
+/* disabled input */
+.floating input:disabled {
+  background-color: #6b7280 !important;
+  color: #fff !important;
+  opacity: 0.7;
+}
+.floating input:disabled + label i {
+  color: var(--second-color) !important;
+}

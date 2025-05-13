@@ -1,0 +1,48 @@
+/* Delete Bootstrap styles */
+:global(.nav-link):focus-visible {
+  box-shadow: var(--prim-color);
+}
+.navbar {
+  background: #22252a;
+  background: linear-gradient(
+    60deg,
+    rgba(34, 37, 42, 1) 30%,
+    var(--prim-color) 30%,
+    var(--prim-color) 100%
+  );
+}
+
+.list-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.list-links a {
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  width: fit-content;
+  border-radius: 5px;
+  margin: auto;
+  /* padding: 10px; */
+  transition-property: background-color, color;
+  transition-duration: 0.3s;
+}
+.list-links a.selected {
+  color: var(--prim-color) !important;
+  background-color: #f1f1f1 !important;
+}
+.list-links a:focus-visible {
+  box-shadow: none;
+}
+.list-links a:hover {
+  color: var(--prim-color) !important;
+  background-color: #f1f1f1 !important;
+}
+@media (max-width: 991px) {
+  .list-links ul {
+    width: 100%;
+  }
+}

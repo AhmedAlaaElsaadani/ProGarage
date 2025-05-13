@@ -1,0 +1,173 @@
+/* General styles */
+/* 
+///////////////////////////////////////////
+// Coloring
+// General style 
+// selection
+// scrollbar
+// Sweet alert overriding 
+// Common classes
+///////////////////////////////////////////
+*/
+
+/* 
+//////////Coloring///////////
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap");
+
+/* Apply the font globally or to specific elements */
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+/* Coloring */
+:root {
+  /* Global coloring  */
+  --prim-color: #a20100;
+  --bg-color: #f5f5f5;
+  --second-color: #22252a;
+}
+
+/* 
+//////////General style ///////////
+*/
+body {
+  color: var(--second-color);
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: "poppins", sans-serif;
+}
+/* 
+control the content and order of the page
+*/
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+section {
+  flex-grow: 1;
+}
+a {
+  text-decoration: none;
+}
+p {
+  margin-bottom: 0;
+}
+button {
+  transition-property: background-color, color, scale !important;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+button:active {
+  scale: 0.9;
+}
+/* 
+//////////selection///////////
+*/
+::selection {
+  background-color: var(--prim-color);
+  color: #fff;
+}
+/* 
+//////////scrollbar///////////
+*/
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px !important;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10000;
+  /* height: 100vh; */
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--prim-color);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--prim-color);
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--prim-color);
+}
+::-webkit-scrollbar-track {
+  background-color: var(--second-color);
+  border-radius: 10px;
+  margin: -10px 0px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+/*/////////Sweet alert overriding ///////////*/
+.swal2-confirm {
+  background-color: var(--prim-color) !important;
+  border: none !important;
+  color: #fff;
+}
+/* Text NO DATA */
+.no-data {
+  color: rgb(49, 48, 48);
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-web {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.btn-web:active {
+  background-color: var(--prim-color) !important;
+  color: #fff !important;
+}
+.btn-web-primary {
+  background-color: var(--prim-color);
+  color: #fff;
+  border: 1px solid var(--prim-color);
+}
+.btn-web-primary:hover {
+  background-color: transparent;
+  color: var(--prim-color);
+}
+.btn-web-outline-primary {
+  background-color: transparent;
+  color: var(--prim-color);
+  border: 1px solid var(--prim-color);
+}
+.btn-web-outline-primary:hover {
+  background-color: var(--prim-color);
+  color: #fff;
+}
+.btn-web:disabled {
+  border: 1px solid var(--prim-color);
+  background-color: transparent;
+  color: var(--prim-color);
+  cursor: not-allowed;
+}
+@media screen and (max-width: 992px) {
+  .no-data {
+    font-size: 1rem;
+  }
+}
