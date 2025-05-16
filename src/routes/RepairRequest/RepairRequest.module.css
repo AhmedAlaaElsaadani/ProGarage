@@ -1,0 +1,205 @@
+/* RepairRequest Styles */
+.repairRequestSection {
+  padding: 4rem 0;
+}
+
+.repairRequestCard {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.heading {
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.sectionLabel {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Upload Area Styles */
+.uploadArea {
+  background-color: #ffefef;
+  border: 2px dashed #b00707;
+  border-radius: 12px;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 200px;
+  position: relative;
+}
+
+.uploadArea:hover {
+  background-color: #ffe5e5;
+}
+
+.uploadIcon {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: #b00707;
+  font-size: 1.5rem;
+}
+
+.uploadText {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: #b00707;
+}
+
+.uploadLimit {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.fileInput {
+  display: none;
+}
+
+/* Image Preview Styles */
+.previewContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagePreview {
+  max-width: 100%;
+  max-height: 180px;
+  border-radius: 8px;
+}
+
+.removeImageBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #b00707;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.removeImageBtn:hover {
+  background-color: #fff;
+  transform: scale(1.1);
+}
+
+/* Location Map Styles */
+.mapContainer {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+}
+
+.locationMap {
+  width: 100%;
+  height: 100%;
+}
+
+.locationPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+
+.getLocationBtn {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.getLocationBtn:hover {
+  background-color: #f8f8f8;
+  border-color: #c0c0c0;
+}
+
+.locationError {
+  color: #b00707;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  text-align: center;
+  max-width: 80%;
+}
+
+/* Status Messages */
+.successMessage {
+  background-color: rgba(0, 128, 0, 0.1);
+  color: green;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.errorMessage {
+  background-color: rgba(176, 7, 7, 0.1);
+  color: #b00707;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .repairRequestCard {
+    padding: 1.5rem;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}

@@ -10,12 +10,7 @@ export default function Spinner({ sectionFlag = true }) {
         flexGrow: sectionFlag ? "1" : "0",
       }}
     >
-      <i
-        className="fa-solid fa-spinner fa-spin fa-spin-plus m-auto fs-1 "
-        style={{
-          color: "var(--prim-color)",
-        }}
-      ></i>
+      <i className="fa-solid fa-spinner fa-spin fa-spin-plus m-auto fs-1 text-warning"></i>
     </div>
   );
 }

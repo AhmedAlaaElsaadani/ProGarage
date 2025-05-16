@@ -1,0 +1,41 @@
+.FooterContainer {
+  /* bg-dark my-0 text-light py-5 */
+  color: #f5f5f5;
+  background-color: var(--second-color);
+  padding: 2rem 0;
+}
+.social-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--prim-color);
+  transition-property: color, background-color;
+  transition-duration: 0.3s;
+}
+
+.social-icon:hover {
+  background-color: var(--prim-color);
+  color: #fff;
+}
+.gradient-line {
+  width: 60%;
+  height: 5px;
+  background: linear-gradient(40deg, #fff 30%, var(--prim-color) 30%);
+}
+
+.FooterContainer ul {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 45px; /* 250% */
+}
+.footer-bottom,
+.footer-bottom a {
+  color: #fff;
+  opacity: 75%;
+}
+
+.footer-bottom a:hover {
+  color: var(--prim-color);
+  text-decoration: none;
+  opacity: 100%;
+}

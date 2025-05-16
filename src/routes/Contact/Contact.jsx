@@ -149,7 +149,6 @@ export default function Contact() {
               <div className="w-100" key={idx}>
                 <FloatingInput
                   inputType={input.inputType}
-                  npm
                   inputName={input.inputName}
                   inputText={input.inputText}
                   defaultValue={myFormik.values[input.inputName]}

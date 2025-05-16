@@ -1,6 +1,6 @@
 /* floating label */
 .FloatingLabel {
-  color: #6b7280;
+  color: #6b7280 !important;
   font-size: 1.25em;
   font-weight: 400;
   display: flex;
@@ -38,6 +38,13 @@
   cursor: pointer;
   -webkit-filter: invert(42%) sepia(19%) saturate(467%) hue-rotate(130deg);
 }
+.floating > .floatingInput:-webkit-autofill {
+  box-shadow: 0 0 0 30px var(--bg-color) inset !important;
+  -webkit-box-shadow: 0 0 0 30px var(--bg-color) inset !important;
+  -webkit-text-fill-color: var(--prim-color) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 /* Arabic */
 /*Auto fill*/
 .floating > .floatingInput:-webkit-autofill ~ label ,
@@ -45,7 +52,7 @@
 .floating > .floatingInput:focus ~ label,
 .floating > .floatingInput:not(:placeholder-shown) ~ label,
 .floating > .floatingSelect ~ label {
-  color: var(--prim-color);
+  color: var(--prim-color) !important;
   transform: scale(0.64) translateY(-16%) translateX(0%) !important;
   -webkit-transform: scale(0.64) translateY(-16%) translateX(0%) !important;
   -moz-transform: scale(0.64) translateY(-16%) translateX(0%) !important;
@@ -99,7 +106,6 @@
 
 .floating .passwordIcon:hover {
   color: var(--prim-color);
-
 }
 
 .floating .passwordIcon {

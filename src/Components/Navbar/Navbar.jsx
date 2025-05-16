@@ -6,12 +6,14 @@ import { HashLink } from "react-router-hash-link";
 import style from "./Navbar.module.css";
 import { motion } from "framer-motion";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
+import { authContext } from "../../Contexts/authContext";
 // import NavbarTop from "../NavbarTop/NavbarTop";
 // import SubMenuNavbar from "../Ui/SubMenuNavbar/SubMenuNavbar";
 import whiteLogo from "../../assets/Images/whiteLogo.svg";
 
 const Navbar = () => {
   const [navbarCollapse, setNavbarCollapse] = useState();
+  const { setToken, token, isRegistered } = useContext(authContext);
   const location = useLocation();
   const [active, setActive] = useState("Home");
   const navBar = useRef(null);
@@ -190,15 +192,35 @@ const Navbar = () => {
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="navbar-nav  d-flex justify-content-center align-items-center"
+              className="navbar-nav  d-flex justify-content-center align-items-center gap-3"
             >
-              {/* <SubMenuNavbar /> */}
-              <li>
-                {/* <DarkModeToggle
-                  isDarkMode={isDarkMode}
-                  setIsDarkMode={setIsDarkMode}
-                /> */}
-              </li>
+              {isRegistered ? (
+                <>
+                  <li >
+                    <Link to="/cart" className={style.cart}>
+                      <i className="fa-solid fa-cart-shopping"></i>{" "}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/register" className={style["registerBtn"]}>
+                      Log out
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/login" className={style["loginBtn"]}>
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/register" className={style["registerBtn"]}>
+                      Register
+                    </Link>
+                  </li>
+                </>
+              )}
             </motion.ul>
           </div>
         </div>

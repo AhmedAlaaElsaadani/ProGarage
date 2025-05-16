@@ -41,6 +41,60 @@
   color: var(--prim-color) !important;
   background-color: #f1f1f1 !important;
 }
+/* Cart */
+a.cart {
+  background-color: var(--second-color);
+  border: 1px solid var(--second-color);
+  border-radius: 50%;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  /* position: relative; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+.cart:hover {
+  background-color: var(--prim-color);
+  color: #fff;
+  transition-property: background-color, color;
+  transition-duration: 0.3s;
+}
+a.cart:hover {
+  color: #fff !important;
+  background-color: transparent !important;
+}
+/* Login & Register */
+.loginBtn {
+  background-color: transparent;
+  color: var(--prim-color);
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: auto;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.registerBtn {
+  color: var(--prim-color) !important;
+  background-color: white;
+  border: 1px solid var(--prim-color) !important;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.list-links .registerBtn:hover {
+  background-color: var(--prim-color) !important;
+  color: white !important;
+  border-color: white !important;
+}
 @media (max-width: 991px) {
   .list-links ul {
     width: 100%;

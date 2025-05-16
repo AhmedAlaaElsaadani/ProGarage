@@ -5,6 +5,7 @@ import { IsMobileContext } from "../../contexts/IsMobileContext";
 import Navbar from "../../Components/Navbar/Navbar";
 import WhatsappComponent from "../../Components/Ui/WhatsappComponent/WhatsappComponent";
 import Spinner from "../../Components/Ui/Spinner/Spinner";
+import Footer from "../../Components/Footer/Footer.jsx";
 
 export default function RoutLayout() {
   const { isMobile } = useContext(IsMobileContext);
@@ -18,6 +19,7 @@ export default function RoutLayout() {
         <WhatsappComponent />
       </Suspense>
       <Outlet />
+      <Footer />
     </>
   );
 }

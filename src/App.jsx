@@ -1,11 +1,35 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import RoutLayout from "./routes/RoutLayout/RoutLayout";
 import About from "./routes/About/About";
 import IsMobileProvider from "./contexts/IsMobileContext";
-import AuthProvider from "./contexts/authContext";
+import AuthProvider from "./Contexts/authContext";
 import Contact from "./routes/Contact/Contact";
+import RepairRequest from "./routes/RepairRequest/RepairRequest";
+import Products from "./routes/Products/Products";
+import Home from "./routes/Home/Home";
+import Spinner from "./Components/Ui/Spinner/Spinner";
 
+const Login = lazy(() => import("./routes/Login/Login"));
+const Register = lazy(() => import("./routes/Register/Register"));
+const EmailConfirmOtp = lazy(() =>
+  import("./routes/EmailConfirmOtp/EmailConfirmOtp")
+);
+const ProtectedRoute = lazy(() =>
+  import("./Components/ProtectedRoute/ProtectedRoute")
+);
+const InverseProtectedRoute = lazy(() =>
+  import("./Components/InverseProtectedRoute/InverseProtectedRoute")
+);
+const ForgetPasswordEmail = lazy(() =>
+  import("./routes/ForgetPasswordEmail/ForgetPasswordEmail")
+);
+const ForgetPasswordConfirmOtp = lazy(() =>
+  import("./routes/ForgetPasswordConfirmOtp/ForgetPasswordConfirmOtp")
+);
+const ForgetPasswordResetPass = lazy(() =>
+  import("./routes/ForgetPasswordResetPass/ForgetPasswordResetPass")
+);
 export default function App() {
   const router = createBrowserRouter([
     {
@@ -14,11 +38,11 @@ export default function App() {
       children: [
         {
           index: true,
-          element: <div>Home</div>,
+          element: <Home />,
         },
         {
           path: "/home",
-          element: <div>Home</div>,
+          element: <Home />,
         },
         {
           path: "/about",
@@ -28,13 +52,81 @@ export default function App() {
           path: "/Contact",
           element: <Contact />,
         },
+        {
+          path: "/repairRequest",
+          element: <RepairRequest />,
+        },
+        {
+          path: "/Products",
+          element: <Products />,
+        },
+        //Login and Register
+        {
+          path: "/login",
+          element: (
+            <Suspense fallback={<Spinner />}>
+              <InverseProtectedRoute>
+                <Login />
+              </InverseProtectedRoute>
+            </Suspense>
+          ),
+        },
+        {
+          path: "/register",
+          element: (
+            <Suspense fallback={<Spinner />}>
+              <InverseProtectedRoute>
+                <Register />
+              </InverseProtectedRoute>
+            </Suspense>
+          ),
+        },
+        {
+          path: "/forget-password-email",
+          element: (
+            <Suspense fallback={<Spinner />}>
+              <InverseProtectedRoute>
+                <ForgetPasswordEmail />
+              </InverseProtectedRoute>
+            </Suspense>
+          ),
+        },
+        {
+          path: "/forget-password-otp",
+          element: (
+            <Suspense fallback={<Spinner />}>
+              <InverseProtectedRoute>
+                <ForgetPasswordConfirmOtp />
+              </InverseProtectedRoute>
+            </Suspense>
+          ),
+        },
+        {
+          path: "/forget-password-reset",
+          element: (
+            <Suspense fallback={<Spinner />}>
+              <InverseProtectedRoute>
+                <ForgetPasswordResetPass />
+              </InverseProtectedRoute>
+            </Suspense>
+          ),
+        },
+        {
+          path: "/EmailConfirmOtp",
+          element: (
+            <Suspense fallback={<Spinner />}>
+              <EmailConfirmOtp />
+            </Suspense>
+          ),
+        },
       ],
+      // errorElement: <Error404 />,
     },
   ]);
   return (
     <AuthProvider>
       <IsMobileProvider>
-        <RouterProvider router={router} />;
+        <RouterProvider router={router} />
       </IsMobileProvider>
     </AuthProvider>
   );

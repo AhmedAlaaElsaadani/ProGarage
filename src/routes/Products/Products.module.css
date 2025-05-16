@@ -3,6 +3,40 @@
   font-size: 16px;
   overflow: hidden;
 }
+.pagination button {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  margin: 0 5px;
+  border: 1px solid rgba(34, 37, 42, 0.5);
+}
+.pagination button:hover {
+  background: #a20100;
+  color: white;
+  border: none !important;
+}
+.activePage {
+  background: #a20100;
+  color: white;
+  border: none !important;
+}
+.paginationArrow {
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 10px;
+  color: white;
+  border: none !important;
+  background-color: #22252a !important;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
 @media screen and (max-width: 769px) {
   .products {
     font-size: 18px;
@@ -12,11 +46,9 @@
   .products {
     font-size: 16px;
   }
-  
 }
 @media screen and (max-width: 400px) {
   .products {
     font-size: 14px;
   }
-  
 }

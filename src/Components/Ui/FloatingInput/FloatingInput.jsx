@@ -1,7 +1,7 @@
 // import { useTranslation } from "react-i18next";
 import style from "./FloatingInput.module.css";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function FloatingInput({
   //input props

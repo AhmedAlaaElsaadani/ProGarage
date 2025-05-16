@@ -1,0 +1,101 @@
+/*************** Login ***************/
+/* --------------Indexing--------------
+*  Login
+*  heading
+*  form => inputContainer
+*  Login => p Message
+*  login-footer => a
+*  Media Queries
+*/
+/* --------------Login--------------*/
+.Login {
+  width: 100%;
+  font-size: 16px;
+  overflow: hidden;
+}
+/* --------------heading--------------*/
+.Login .heading h2 {
+  color: #6b7280;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 10px -16px;
+}
+.Login .heading span {
+  color: var(--prim-color);
+}
+/* --------------form--------------*/
+.Login form .inputContainer {
+  width: 80%;
+}
+.Login form label {
+  color: #6b7280;
+  font-size: 1.25em;
+  font-weight: 400;
+}
+.Login form input[type="checkbox"] {
+  width: 30px;
+  height: 30px;
+  background-color: var(--bg-color);
+  outline: 1px solid var(--prim-color);
+  border: 1px solid var(--prim-color);
+}
+.Login form input[type="checkbox"]:checked {
+  background-color: var(--prim-color);
+}
+
+/* --------------Login-message--------------*/
+.Login p {
+  color: #6b7280;
+  font-size: 1.25em;
+  font-weight: 400;
+}
+/* --------------login-footer--------------*/
+.login-footer a {
+  color: var(--prim-color);
+  transition-property: color;
+  transition-duration: 0.3s;
+  text-decoration: none;
+  position: relative;
+}
+.login-footer a:hover {
+  color: var(--prim-color);
+}
+.login-footer a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--prim-color);
+  transition: width 0.3s;
+  -webkit-transition: width 0.3s;
+  -moz-transition: width 0.3s;
+  -ms-transition: width 0.3s;
+  -o-transition: width 0.3s;
+}
+.login-footer a:hover::after {
+  width: 100%;
+}
+.Login form button {
+  width: fit-content;
+}
+/* --------------Media Queries--------------*/
+@media (max-width: 991px) {
+  .Login {
+    font-size: 14px;
+  }
+
+  .Login .heading h2 {
+    margin: 0px;
+  }
+}
+@media (max-width: 425px) {
+  .Login {
+    font-size: 10px;
+  }
+  .Login form .inputContainer {
+    width: 100%;
+  }
+}

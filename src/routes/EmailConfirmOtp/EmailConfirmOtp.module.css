@@ -1,0 +1,47 @@
+.EmailConfirmOtp {
+  width: 100%;
+  font-size: 16px;
+}
+.EmailConfirmOtp .heading h2 {
+  color: #6b7280;
+  font-size: 1.5em;
+  font-weight: 700;
+}
+.EmailConfirmOtp  span {
+  color: var(--prim-color) ;
+}
+.EmailConfirmOtp .parentContainer {
+  background-color: var(--bg-color);
+  border: 1px solid var(--prim-color);
+}
+.EmailConfirmOtp p {
+  color: var(--form-message);
+  font-size: 1.25em;
+  font-weight: 400;
+}
+.EmailConfirmOtp form input {
+  width: 50px;
+  height: 50px;
+  color: var(--prim-color);
+  border: 1px solid var(--prim-color) !important;
+}
+.EmailConfirmOtp form input:focus {
+  box-shadow: none;
+  color: var(--prim-color);
+
+}
+@media (max-width: 991px) {
+  .EmailConfirmOtp {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 425px) {
+  .EmailConfirmOtp {
+    font-size: 12px;
+  }
+  .EmailConfirmOtp form input {
+    width: 34px;
+    height: 40px;
+  }
+}

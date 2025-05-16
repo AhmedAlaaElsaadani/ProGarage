@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, use, useEffect, useState } from "react";
 export const IsMobileContext = createContext();
 export default function IsMobileProvider({ children }) {
   const [isMobile, setIsMobile] = useState(null);
@@ -13,6 +13,9 @@ export default function IsMobileProvider({ children }) {
     setIsMobile(window.matchMedia("(max-width:992px)").matches);
     return () => mediaQuery.removeEventListener("change", checkMobile);
   }, []);
+  useEffect(() => {
+    console.log(isMobile);
+  }, [isMobile]);
 
   return (
     <IsMobileContext.Provider value={{ isMobile }}>

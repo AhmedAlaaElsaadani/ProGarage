@@ -54,6 +54,7 @@ control the content and order of the page
 section {
   flex-grow: 1;
 }
+
 a {
   text-decoration: none;
 }

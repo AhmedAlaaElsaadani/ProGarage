@@ -1,0 +1,187 @@
+.selectContainer {
+  font-size: 1.25em;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: none;
+  border-bottom: 0.0625em  rgba(34, 37, 42, 0.35)  solid !important;
+  transition: box-shadow 0.3s ease;
+  -webkit-transition: box-shadow 0.3s ease;
+  -moz-transition: box-shadow 0.3s ease;
+  -ms-transition: box-shadow 0.3s ease;
+  -o-transition: box-shadow 0.3s ease;
+}
+
+.selectContainer:focus-within {
+  box-shadow: 0 0 0 0.25rem #a200007e !important;
+}
+
+.selectContainer i {
+  color: var(--prim-color);
+  margin: 0 10px;
+}
+
+.selectBox {
+  position: relative;
+  flex: 1;
+}
+
+/* Original select styles - kept for fallback */
+.selectBox select {
+  width: 100%;
+  padding: 15px;
+  padding-right: 40px;
+  appearance: none;
+  background-color: var(--bg-color);
+  color: var(--input-text-color);
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+
+.selectBox::after {
+  content: "▼";
+  position: absolute;
+  left: 15px;
+  bottom: 50%;
+  transform: translateY(50%);
+  pointer-events: none;
+  color: var(--prim-color);
+  transition: transform 0.2s ease-in-out;
+  -webkit-transition: transform 0.2s ease-in-out;
+  -moz-transition: transform 0.2s ease-in-out;
+  -ms-transition: transform 0.2s ease-in-out;
+  -o-transition: transform 0.2s ease-in-out;
+}
+
+/* Search dropdown styles - incorporated with your design */
+.customSelect {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+
+.selectedOption {
+  width: 100%;
+  padding: 15px;
+  padding-right: 40px;
+  background-color: var(--bg-color);
+  color: var(--input-text-color);
+  border: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.selectedOption:empty::before {
+  content: attr(data-placeholder);
+  color: #6b7280;
+}
+
+.customSelect.open + .selectBox::after {
+  transform: rotate(180deg) translateY(-13px);
+  -webkit-transform: rotate(180deg) translateY(-13px);
+  -moz-transform: rotate(180deg) translateY(-13px);
+  -ms-transform: rotate(180deg) translateY(-13px);
+  -o-transform: rotate(180deg) translateY(-13px);
+}
+
+.dropdownMenu {
+  position: absolute;
+  width: 100%;
+  max-height: 300px;
+  padding: 15px 0;
+  /* overflow: auto; */
+  background-color: var(--bg-color);
+  color: var(--input-text-color);
+  z-index: 10;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(34, 37, 42, 0.35) !important;
+  border-top: none;
+}
+
+.searchContainer {
+  position: sticky;
+  top: 0;
+  padding: 10px;
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--input-border);
+  z-index: 2;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(34, 37, 42, 0.35) !important;
+  border-radius: 6px;
+  background-color: var(--bg-color);
+  color: var(--input-text-color);
+  font-size: 16px;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: var(--prim-color);
+  box-shadow: 0 0 0 0.15rem #a200007e;
+}
+
+.optionsList {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.option {
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  -webkit-transition: background-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease;
+  -ms-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+}
+
+.option:hover {
+  background-color: hsla(0, 100%, 32%, 0.1);
+}
+
+.option.selected {
+  background-color: hsla(0, 100%, 32%, 0.2);
+  font-weight: 500;
+}
+
+.noResults {
+  padding: 15px;
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* For RTL (english) */
+body[dir="ltr"] .selectBox::after {
+  right: 15px;
+  left: auto;
+}
+
+body[dir="ltr"] .selectedOption {
+  padding-left: 15px;
+  padding-right: 40px;
+}
+
+body:not([dir="ltr"]) .selectedOption {
+  padding-right: 15px;
+  padding-left: 40px;
+}
+
+@media (max-width: 768px) {
+  .selectBox {
+    width: 100%;
+  }
+
+  .dropdownMenu {
+    max-height: 250px;
+  }
+}
