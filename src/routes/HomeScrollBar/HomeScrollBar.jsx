@@ -6,7 +6,7 @@ import "swiper/css/scrollbar";
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./HomeScrollBar.module.css";
-
+import categoryImage from "../../assets/Images/category.png"; // Replace with your actual image path
 export default function HomeScrollBar({ categories }) {
   // Define categories with exactly 5 items
   const categoriesX = [
@@ -88,7 +88,7 @@ export default function HomeScrollBar({ categories }) {
                 <div className={style.categoryCard}>
                   <div className={style.iconContainer}>
                     <img
-                      src={category.image}
+                      src={categoryImage}
                       alt={category.title}
                       className={style.categoryIcon}
                     />

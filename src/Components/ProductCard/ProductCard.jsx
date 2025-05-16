@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./ProductCard.module.css";
 import carDoorImage from "../../assets/Images/door.jpg";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const { title, brand, price, year, images } = product;
@@ -57,17 +58,17 @@ const ProductCard = ({ product }) => {
           onClick={handleAddToCart}
           className="btn-web btn-web-outline-primary  flex-grow-1 add-to-cart-btn"
         >
-          Add to Cart
-          <i className="fa-solid fa-cart-shopping mx-3"></i>
+          Order
+          {/* <i className="fa-solid fa-cart-shopping mx-3"></i> */}
         </button>
 
-        {/* <button
-          onClick={handleAddToWishlist}
+        <Link
+          to={`/product/${product.id}`}
           className="btn-web btn-web-primary ms-2 wishlist-btn"
           aria-label="Add to wishlist"
         >
-          ♡
-        </button> */}
+          Details
+        </Link>
       </div>
     </div>
   );

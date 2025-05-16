@@ -10,6 +10,8 @@ import { authContext } from "../../Contexts/authContext";
 // import NavbarTop from "../NavbarTop/NavbarTop";
 // import SubMenuNavbar from "../Ui/SubMenuNavbar/SubMenuNavbar";
 import whiteLogo from "../../assets/Images/whiteLogo.svg";
+import Swal from "sweetalert2";
+import ApiManager from "../../Utilies/ApiManager";
 
 const Navbar = () => {
   const [navbarCollapse, setNavbarCollapse] = useState();
@@ -46,6 +48,41 @@ const Navbar = () => {
       to: "Contact#Contact",
     },
   ];
+
+  // logout function
+  const logOut = async () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#469791",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, log me out!",
+      cancelButtonText: "Cancel",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          setToken(null);
+          await ApiManager.logOut(token);
+          Swal.fire({
+            title: "Logged out!",
+            text: "You have been successfully logged out.",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        } catch (error) {
+          console.error("Logout failed:", error);
+          Swal.fire(
+            "Error!",
+            "Something went wrong. Please try again.",
+            "error"
+          );
+        }
+      }
+    });
+    setShowSubMenu(!showSubMenu);
+  };
 
   const hideNavbar = () => {
     navbarCollapse.hide();
@@ -196,15 +233,15 @@ const Navbar = () => {
             >
               {isRegistered ? (
                 <>
-                  <li >
+                  <li>
                     <Link to="/cart" className={style.cart}>
                       <i className="fa-solid fa-cart-shopping"></i>{" "}
                     </Link>
                   </li>
                   <li>
-                    <Link to="/register" className={style["registerBtn"]}>
+                    <button onClick={logOut} className={style["registerBtn"]}>
                       Log out
-                    </Link>
+                    </button>
                   </li>
                 </>
               ) : (

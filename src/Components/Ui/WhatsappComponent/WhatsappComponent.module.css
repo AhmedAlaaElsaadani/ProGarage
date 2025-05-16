@@ -1,5 +1,5 @@
 .WhatsappIcon:hover {
-  scale: 1.4;
+  scale: 1.2;
 }
 .WhatsappSocial {
   bottom: 15%;
@@ -14,7 +14,7 @@
 .WhatsappIcon {
   cursor: pointer;
   background-color: var(--prim-color);
-  scale: 1.2;
+  scale: 1;
   transition: scale 0.5s ease-in-out;
   -webkit-transition: scale 0.5s ease-in-out;
   -moz-transition: scale 0.5s ease-in-out;

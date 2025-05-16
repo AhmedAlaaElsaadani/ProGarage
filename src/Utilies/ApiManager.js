@@ -264,23 +264,13 @@ export default class ApiManager {
 
   // unAuthorized services Api <-- Home , contactUs, askForRepair-->
   /********************Home Page****************************/
-  // Home Page <-- Get Home Data, Contact Us -->
+  // Home Page <-- Get Home Data, Contact Us, getProducts -->
   /**
    * get home data
    * @returns {object} response
    */
   static async getHomeData() {
     const axiosResult = await axios.get(baseUrl + "/home", {
-      headers: getHeaders(),
-    });
-    return axiosResult;
-  }
-  /**
-   * get About Content
-   * @returns
-   */
-  static async getAboutData() {
-    const axiosResult = await axios.get(baseUrl + "/home/about-platform", {
       headers: getHeaders(),
     });
     return axiosResult;
@@ -300,33 +290,49 @@ export default class ApiManager {
     return axiosResult;
   }
   /**
-   * Ask for Repair
-   * @param {object} params
-   * @param {string} params.LocationLongitude
-   * @param {string} params.LocationLatitude
-   * @param {string} params.LocationDescription
-   * @param {string} params.PhoneNumber
-   * @param {string} params.ProblemDescription
-   * @param {File[]} params.Images
-   * @param {string} token
+   * Get Products
+   * @param {string} token - Bearer token for authorization
    * @returns {Promise<object>} response
    */
-  static async askForRepair(params, token) {
-    const formData = new FormData();
-    formData.append("LocationLongitude", params.LocationLongitude);
-    formData.append("LocationLatitude", params.LocationLatitude);
-    formData.append("LocationDescription", params.LocationDescription);
-    formData.append("PhoneNumber", params.PhoneNumber);
-    formData.append("ProblemDescription", params.ProblemDescription);
-
-    params.Images.forEach((file) => {
-      formData.append("Images", file);
-    });
-
-    const response = await axios.post(`${baseUrl}/repair-request`, formData, {
+  static async getProducts(token) {
+    const response = await axios.get(`${baseUrl}/products`, {
       headers: getHeaders(token),
     });
+    return response;
+  }
+  /**
+   * Get Brands
+   * @param {string} token
+   * @returns {Promise<object>}
+   */
+  static async getBrands(token) {
+    const response = await axios.get(`${baseUrl}/brands`, {
+      headers: getHeaders(token),
+    });
+    return response;
+  }
 
+  /**
+   * Get Types
+   * @param {string} token
+   * @returns {Promise<object>}
+   */
+  static async getTypes(token) {
+    const response = await axios.get(`${baseUrl}/types`, {
+      headers: getHeaders(token),
+    });
+    return response;
+  }
+
+  /**
+   * Get Categories
+   * @param {string} token
+   * @returns {Promise<object>}
+   */
+  static async getCategories(token) {
+    const response = await axios.get(`${baseUrl}/categories`, {
+      headers: getHeaders(token),
+    });
     return response;
   }
   /********************Basket Page****************************/
@@ -395,19 +401,33 @@ export default class ApiManager {
     return axiosResult;
   }
   /**
-   * @param {string} Type
-   * @param {string} itemId
+   * Ask for Repair
+   * @param {object} params
+   * @param {string} params.LocationLongitude
+   * @param {string} params.LocationLatitude
+   * @param {string} params.LocationDescription
+   * @param {string} params.PhoneNumber
+   * @param {string} params.ProblemDescription
+   * @param {File[]} params.Images
    * @param {string} token
-   * @returns {object} response
+   * @returns {Promise<object>} response
    */
-  static async buyFreeItem(token, Type, itemId) {
-    const raw = JSON.stringify({
-      ItemId: itemId,
-      Type: Type,
+  static async askForRepair(params, token) {
+    const formData = new FormData();
+    formData.append("LocationLongitude", params.LocationLongitude);
+    formData.append("LocationLatitude", params.LocationLatitude);
+    formData.append("LocationDescription", params.LocationDescription);
+    formData.append("PhoneNumber", params.PhoneNumber);
+    formData.append("ProblemDescription", params.ProblemDescription);
+
+    params.Images.forEach((file) => {
+      formData.append("Images", file);
     });
-    const axiosResult = await axios.post(baseUrl + "/orders/free-item", raw, {
+
+    const response = await axios.post(`${baseUrl}/repair-request`, formData, {
       headers: getHeaders(token),
     });
-    return axiosResult;
+
+    return response;
   }
 }
