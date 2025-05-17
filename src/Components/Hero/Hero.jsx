@@ -14,7 +14,7 @@ const Hero = ({ products }) => {
       price: 15000,
       title: "Engine",
       category: "Engine Parts",
-      image: "/images/turbocharger.png", // يجب أن تكون شفافة PNG
+      image: "/images/turbocharger.png", 
     },
     {
       id: 11,
@@ -31,9 +31,11 @@ const Hero = ({ products }) => {
       image: "/images/oil-filter.png",
     },
   ];
+  // products that we get from the backend
 
   const displayProducts = products || defaultProducts;
-  const backgroundImageUrl = homeBackground; // صورة السيارة
+  // const backgroundImageUrl
+  const backgroundImageUrl = homeBackground; 
 
   return (
     <div
@@ -67,7 +69,7 @@ const Hero = ({ products }) => {
         style={{
           right: "15%",
           top: "0",
-        //   transform: "translateY(-50%)",
+        
           width: "160px",
           height: "50%",
           backgroundColor: "#d30000",
