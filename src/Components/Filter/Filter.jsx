@@ -1,47 +1,45 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styles from "./Filter.module.css";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
 import { motion } from "framer-motion";
 
-const Filter = ({ filters, onFilterChange }) => {
+const Filter = ({ filters, onFilterChange, brands, types, categories }) => {
   // Local state to manage filter form
-  const [localFilters, setLocalFilters] = useState(filters);
+  const [localFilters, setLocalFilters] = useState({
+    TypeId: filters.TypeId || "",
+    BrandId: filters.BrandId || "",
+    Year: filters.Year || "",
+    Transmission: filters.Transmission || "",
+    CategoryId: filters.CategoryId || "",
+  });
+
   const { isMobile } = useContext(IsMobileContext);
   const [showFilterModal, setShowFilterModal] = useState(false);
 
-  // Options for dropdown filters
-  const filterOptions = {
-    carType: ["Sedan", "SUV", "Hatchback", "Truck", "Van"],
-    carBrand: [
-      "BMW",
-      "Mercedes",
-      "Toyota",
-      "Honda",
-      "Ford",
-      "Chevrolet",
-      "Audi",
-      "Bosch",
-    ],
-    carModel: [
-      "Model S",
-      "Model X",
-      "Corolla",
-      "Civic",
-      "F-150",
-      "Silverado",
-      "A4",
-    ],
-    year: ["2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016"],
-    transmission: ["Automatic", "Manual", "CVT", "Semi-automatic"],
-    category: [
-      "Lights",
-      "Engine",
-      "Brakes",
-      "Suspension",
-      "Electrical",
-      "Body Parts",
-    ],
-  };
+  // Update local filters when props change
+  useEffect(() => {
+    setLocalFilters({
+      TypeId: filters.TypeId || "",
+      BrandId: filters.BrandId || "",
+      Year: filters.Year || "",
+      Transmission: filters.Transmission || "",
+      CategoryId: filters.CategoryId || "",
+    });
+  }, [filters]);
+
+  // Options for year and transmission dropdowns (these don't come from API)
+  const yearOptions = [
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020",
+    "2019",
+    "2018",
+    "2017",
+    "2016",
+  ];
+  const transmissionOptions = ["Automatic", "Manual", "CVT", "Semi-automatic"];
 
   // Handle changes to any filter field
   const handleFilterChange = (field, value) => {
@@ -55,14 +53,20 @@ const Filter = ({ filters, onFilterChange }) => {
   // Apply all filters
   const handleApplyFilters = () => {
     onFilterChange(localFilters);
+    if (isMobile) {
+      setShowFilterModal(false);
+    }
   };
 
   // Clear all filters
   const handleClearFilters = () => {
-    const emptyFilters = Object.keys(localFilters).reduce((acc, key) => {
-      acc[key] = "";
-      return acc;
-    }, {});
+    const emptyFilters = {
+      TypeId: "",
+      BrandId: "",
+      Year: "",
+      Transmission: "",
+      CategoryId: "",
+    };
 
     setLocalFilters(emptyFilters);
     onFilterChange(emptyFilters);
@@ -74,7 +78,13 @@ const Filter = ({ filters, onFilterChange }) => {
   };
 
   // Render select dropdown
-  const renderSelect = (name, label, options) => (
+  const renderSelect = (
+    name,
+    label,
+    options,
+    valueKey = "id",
+    labelKey = "name"
+  ) => (
     <div className={styles.filterItem}>
       <select
         className={styles.filterSelect}
@@ -82,17 +92,26 @@ const Filter = ({ filters, onFilterChange }) => {
         onChange={(e) => handleFilterChange(name, e.target.value)}
       >
         <option value="">{label}</option>
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
+        {Array.isArray(options) &&
+          options.map((option) => {
+            // Handle both array of objects and array of strings
+            const value =
+              typeof option === "object" ? option[valueKey] : option;
+            const text = typeof option === "object" ? option[labelKey] : option;
+
+            return (
+              <option key={value} value={value}>
+                {text}
+              </option>
+            );
+          })}
       </select>
       <div className={styles.selectArrow}>
         <i className="fa fa-chevron-down"></i>
       </div>
     </div>
   );
+
   return (
     <>
       {isMobile && (
@@ -106,6 +125,7 @@ const Filter = ({ filters, onFilterChange }) => {
           <i className="fa fa-filter"></i>
         </button>
       )}
+
       {(!isMobile || showFilterModal) && (
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -125,16 +145,20 @@ const Filter = ({ filters, onFilterChange }) => {
           <h2 className={styles.filterTitle}>Filters</h2>
 
           <div className={styles.filterList}>
-            {renderSelect("carType", "Car Type", filterOptions.carType)}
-            {renderSelect("carBrand", "Car Brand", filterOptions.carBrand)}
-            {renderSelect("carModel", "Car Model", filterOptions.carModel)}
-            {renderSelect("year", "Year", filterOptions.year)}
+            {/* Using real data from the API */}
+            {renderSelect("TypeId", "Car Type", types)}
+            {renderSelect("BrandId", "Car Brand", brands)}
+            {renderSelect("CategoryId", "Category", categories, "id", "title")}
+
+            {/* Static options */}
+            {renderSelect("Year", "Year", yearOptions, null, null)}
             {renderSelect(
-              "transmission",
               "Transmission",
-              filterOptions.transmission
+              "Transmission",
+              transmissionOptions,
+              null,
+              null
             )}
-            {renderSelect("category", "Category", filterOptions.category)}
           </div>
 
           <div className={styles.filterActions}>

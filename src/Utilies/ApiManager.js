@@ -290,22 +290,34 @@ export default class ApiManager {
     return axiosResult;
   }
   /**
-   * Get Products
-   * @param {string} token - Bearer token for authorization
-   * @returns {Promise<object>} response
+   * Get Products with filters and pagination
+   * @param {object} filters - Filter and pagination parameters
+   * @param {string} token - Auth token
+   * @returns {Promise<object>}
    */
-  static async getProducts(token) {
+  static async getProducts(filters, token) {
     const response = await axios.get(`${baseUrl}/products`, {
       headers: getHeaders(token),
+      params: {
+        Id: filters.Id || "",
+        CategoryId: filters.CategoryId || "",
+        Year: filters.Year || "",
+        BrandId: filters.BrandId || "",
+        TypeId: filters.TypeId || "",
+        Transmission: filters.Transmission || "",
+        PageIndex: filters.PageIndex ?? 1,
+        PageSize: filters.PageSize ?? 12,
+      },
     });
+
     return response;
   }
-  /**
+   /**
    * Get Brands
    * @param {string} token
    * @returns {Promise<object>}
    */
-  static async getBrands(token) {
+   static async getBrands(token) {
     const response = await axios.get(`${baseUrl}/brands`, {
       headers: getHeaders(token),
     });

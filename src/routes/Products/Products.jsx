@@ -1,175 +1,213 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import Filter from "../../Components/Filter/Filter";
 import styles from "./Products.module.css";
 import { motion } from "framer-motion";
+import ApiManager from "../../Utilies/ApiManager"; // Make sure this path is correct
+import { authContext } from "../../Contexts/authContext";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filters, setFilters] = useState({
-    carType: "",
-    carBrand: "",
-    carModel: "",
-    year: "",
-    transmission: "",
-    category: "",
-  });
-  const [currentPage, setCurrentPage] = useState(1);
+  const [brands, setBrands] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { token, isRegistered } = useContext(authContext);
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
   const productsPerPage = 6;
 
-  // Fetch products (mock data for now)
-  useEffect(() => {
-    // Mock data - in a real app, this would be an API call
-    const mockProducts = Array(18)
-      .fill()
-      .map((_, index) => ({
-        id: index + 1,
-        title: "Product 01",
-        description: "Any Describyopm Here",
-        price: 1600,
-        year: 2024,
-        transmission: "Automatic",
-        trader: "Master Admin",
-        traderId: "b2d4bec7-5072-4f3a-bdd0-7ab85a337ed3",
-        brandId: 1,
-        brand: "BMW",
-        typeId: 1,
-        type: "Hatchback",
-        category: "AAAAAA",
-        categoryId: 1,
-        images: ["/a/s/d", "/t/y/u"],
-      }));
+  // Filter state
+  const [filters, setFilters] = useState({
+    TypeId: "",
+    BrandId: "",
+    Year: "",
+    Transmission: "",
+    CategoryId: "",
+    PageIndex: 1,
+    PageSize: productsPerPage,
+  });
 
-    setProducts(mockProducts);
-    setFilteredProducts(mockProducts);
+  // Load initial data
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      try {
+        setLoading(true);
+        // Get the auth token - adjust based on your auth implementation
+
+        // Fetch filter options data
+        const [brandsResponse, typesResponse, categoriesResponse] =
+          await Promise.all([
+            ApiManager.getBrands(token),
+            ApiManager.getTypes(token),
+            ApiManager.getCategories(token),
+          ]);
+
+        setBrands(brandsResponse.data.data || []);
+        setTypes(typesResponse.data.data || []);
+        setCategories(categoriesResponse.data.data || []);
+        console.log("Brands:", brandsResponse.data);
+        console.log("Types:", typesResponse.data);
+        console.log("Categories:", categoriesResponse.data);
+        
+
+        // Initial product fetch
+        await fetchProducts(token);
+      } catch (err) {
+        console.error("Error fetching initial data:", err);
+        setError("Failed to load data. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInitialData();
   }, []);
 
-  // Apply filters and search
-  useEffect(() => {
-    let results = [...products];
-
-    // Apply search term filter
-    if (searchTerm) {
-      results = results.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.brand.toLowerCase().includes(searchTerm.toLowerCase())
+  // Fetch products based on current filters
+  const fetchProducts = async (token) => {
+    try {
+      setLoading(true);
+      const response = await ApiManager.getProducts(
+        {
+          ...filters,
+          PageIndex: currentPage,
+        },
+        token
       );
-    }
 
-    // Apply other filters
-    Object.entries(filters).forEach(([key, value]) => {
-      if (value) {
-        // This is just a placeholder for real filtering logic
-        // In a real app, you'd have actual properties to filter on
-        results = results.filter((product) => product[key] !== undefined);
+      const { data } = response.data;
+
+      setProducts(data.data || []);
+
+      if (data.count) {
+        setTotalItems(data.count || 0);
+        setTotalPages(data.count / data.pageSize + 1 || 1);
       }
-    });
+    } catch (err) {
+      console.error("Error fetching products:", err);
+      setError("Failed to load products. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    setFilteredProducts(results);
-    setCurrentPage(1); // Reset to first page when filters change
-  }, [searchTerm, filters, products]);
-
-  // Calculate pagination
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-
-  // // Handle search input change
-  // const handleSearch = (term) => {
-  //   setSearchTerm(term);
-  // };
+  // Update products when filters or pagination changes
+  useEffect(() => {
+    const token = localStorage.getItem("token") || "";
+    fetchProducts(token);
+  }, [filters, currentPage]);
 
   // Handle filter changes
   const handleFilterChange = (filterObj) => {
-    setFilters(filterObj);
-    if (isMobile) {
-      setShowFilterModal(false);
-    }
+    setFilters({
+      ...filters,
+      ...filterObj,
+    });
+    setCurrentPage(1); // Reset to first page when filters change
   };
 
   // Handle pagination
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
   return (
     <section id="Products" className={styles.products}>
-      {/* <div className={styles.searchContainer}>
-        <SearchInput onSearch={handleSearch} />
-      </div> */}
-
       <div className={styles.mainContent + " container "}>
         <div className="row ">
-          {/* Product grid */}
-          <div className="container-fluid  col-md-12 col-lg-8">
-            <div className={" row g-3"}>
-              {currentProducts.map((product, idx) => (
-                <motion.div
-                  initial={{ opacity: 0, y: 100 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.1 * idx > 1 ? 0.2 : 0.1 * idx,
-                  }}
-                  className="col-md-4 col-sm-6"
-                  key={product.id}
-                >
-                  <ProductCard product={product} />
-                </motion.div>
-              ))}
-              {/* Pagination */}
-              <div
-                className={
-                  styles.pagination + " col-md-12 d-flex justify-content-center"
-                }
-              >
-                <button
-                  className={styles.paginationArrow}
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 1}
-                >
-                  &lt;
-                </button>
-
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                  (number) => (
-                    <button
-                      key={number}
-                      className={`${styles.pageNumber} ${
-                        number === currentPage ? styles.activePage : ""
-                      }`}
-                      onClick={() => handlePageChange(number)}
-                    >
-                      {number}
-                    </button>
-                  )
-                )}
-
-                <button
-                  className={styles.paginationArrow}
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                >
-                  &gt;
-                </button>
-              </div>
-            </div>
-          </div>
           {/* Filter - shown normally on desktop, as a modal on mobile */}
           <div className="col-lg-3 p-3">
-            <Filter filters={filters} onFilterChange={handleFilterChange} />
+            <Filter
+              filters={filters}
+              onFilterChange={handleFilterChange}
+              brands={brands}
+              types={types}
+              categories={categories}
+            />
+          </div>
+
+          {/* Product grid */}
+          <div className="container-fluid col-md-12 col-lg-8">
+            {loading ? (
+              <div className="d-flex justify-content-center my-5">
+                <div className="spinner-border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            ) : error ? (
+              <div className="alert alert-danger text-center" role="alert">
+                {error}
+              </div>
+            ) : products.length === 0 ? (
+              <div className="alert alert-info" role="alert">
+                No products found matching your criteria.
+              </div>
+            ) : (
+              <div className="row g-3">
+                {console.log("Products:", products)}
+                {products.map((product, idx) => (
+                  <motion.div
+                    initial={{ opacity: 0, y: 100 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.1 * idx > 1 ? 0.2 : 0.1 * idx,
+                    }}
+                    className="col-md-4 col-sm-6"
+                    key={product.id}
+                  >
+                    <ProductCard product={product} />
+                  </motion.div>
+                ))}
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div
+                    className={
+                      styles.pagination +
+                      " col-md-12 d-flex justify-content-center"
+                    }
+                  >
+                    <button
+                      className={styles.paginationArrow}
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
+                      &lt;
+                    </button>
+
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                      (number) => (
+                        <button
+                          key={number}
+                          className={`${styles.pageNumber} ${
+                            number === currentPage ? styles.activePage : ""
+                          }`}
+                          onClick={() => handlePageChange(number)}
+                        >
+                          {number}
+                        </button>
+                      )
+                    )}
+
+                    <button
+                      className={styles.paginationArrow}
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                    >
+                      &gt;
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
-
-      {/* Floating filter button for mobile */}
     </section>
   );
 };
