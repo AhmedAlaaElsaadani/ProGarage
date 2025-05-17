@@ -6,11 +6,7 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   const { title, brand, price, year, images } = product;
   const handleAddToCart = () => {
-    console.log(`Added ${title} to cart`);
-  };
-
-  const handleAddToWishlist = () => {
-    console.log(`Added ${title} to wishlist`);
+    
   };
 
   return (
@@ -19,8 +15,8 @@ const ProductCard = ({ product }) => {
       <div className={style["product-image-container"] + " p-3"}>
         <img
           src={
-            // imageUrl ||
-            carDoorImage
+            images[0] ||
+            "https://lexproducts.com/admin/storage/uploads/2022/06/08/62a0aa0f9834bNo-Image-Available.jpg"
           }
           alt={title}
           className="product-image img-fluid"

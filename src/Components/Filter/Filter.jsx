@@ -136,10 +136,14 @@ const Filter = ({ filters, onFilterChange, brands, types, categories }) => {
         >
           {isMobile && (
             <button
-              className="btn btn-danger rounded-5 fs-5 "
+              className="btn btn-danger rounded-5 fs-5 d-flex justify-content-center align-items-center position-absolute top-0 end-0 me-2 mt-2"
               onClick={toggleFilterModal}
+              style={{
+                width: "30px",
+                height: "30px",
+              }}
             >
-              &times;
+              X
             </button>
           )}
           <h2 className={styles.filterTitle}>Filters</h2>

@@ -53,35 +53,34 @@ export default function About() {
         <h2 className={style.heading}>Who Choose Pro Garage?</h2>
         <ul>
           <li>
-            <span>Car owners looking for quality auto parts</span> – People who
+            <span>Car owners looking for quality auto parts</span>:People who
             prefer to buy reliable car components online at competitive prices.
           </li>
           <li>
-            <span>DIY enthusiasts and home mechanics</span> – Individuals who
+            <span>DIY enthusiasts and home mechanics</span>:Individuals who
             enjoy working on their own vehicles and need access to a wide range
             of parts.
           </li>
           <li>
-            <span>Busy customers seeking convenient repair services</span> –
+            <span>Busy customers seeking convenient repair services</span>:
             Those who want to book car maintenance or repairs online with
             trusted professionals.
           </li>
           <li>
-            <span>People who want a one-stop solution</span> – Customers looking
+            <span>People who want a one-stop solution</span>:Customers looking
             for both car parts and repair services in one place.
           </li>
           <li>
-            <span>Vehicle owners seeking expert advice</span> – Clients who may
+            <span>Vehicle owners seeking expert advice</span>:Clients who may
             need guidance on the right parts or repair options for their car.
           </li>
           <li>
-            <span>Cost-conscious drivers</span> – People who want affordable
+            <span>Cost-conscious drivers</span>:People who want affordable
             prices without compromising on quality.
           </li>
           <li>
-            <span>Fleet managers or small business owners</span> – Businesses
-            that need regular access to parts and repair services for their
-            vehicles.
+            <span>Fleet managers or small business owners</span>:Businesses that
+            need regular access to parts and repair services for their vehicles.
           </li>
         </ul>
       </motion.div>

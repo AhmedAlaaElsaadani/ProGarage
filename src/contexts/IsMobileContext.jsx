@@ -13,9 +13,6 @@ export default function IsMobileProvider({ children }) {
     setIsMobile(window.matchMedia("(max-width:992px)").matches);
     return () => mediaQuery.removeEventListener("change", checkMobile);
   }, []);
-  useEffect(() => {
-    console.log(isMobile);
-  }, [isMobile]);
 
   return (
     <IsMobileContext.Provider value={{ isMobile }}>

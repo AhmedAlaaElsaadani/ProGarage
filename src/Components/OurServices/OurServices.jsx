@@ -11,31 +11,31 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Swal from "sweetalert2";
 
-const servicesData = [
-  {
-    id: 1,
-    title: "Premium Brake Pads",
-    description:
-      "tullamcorper orci, non gravida tortor nibh non lorem. Integer non felis nec justo",
-    image: "https://api.progarage.store/static/services/123.png",
-  },
-  {
-    id: 2,
-    title: "Suspension Tuning",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisl at facilisis hendrerit, arcu sapien ullamcorper orci, non gravida tortor nibh non lorem. Integer non felis nec justo",
-    image: "https://api.progarage.store/static/services/234.png",
-  },
-  {
-    id: 3,
-    title: "Premium Brake Pads",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisl at facilisis hendrerit, arcu sapien ullamcorper orci, non gravida tortor nibh non lorem. Integer non felis nec justo",
-    image: "https://api.progarage.store/static/services/123.png",
-  },
-];
+// const servicesData = [
+//   {
+//     id: 1,
+//     title: "Premium Brake Pads",
+//     description:
+//       "tullamcorper orci, non gravida tortor nibh non lorem. Integer non felis nec justo",
+//     image: "https://api.progarage.store/static/services/123.png",
+//   },
+//   {
+//     id: 2,
+//     title: "Suspension Tuning",
+//     description:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisl at facilisis hendrerit, arcu sapien ullamcorper orci, non gravida tortor nibh non lorem. Integer non felis nec justo",
+//     image: "https://api.progarage.store/static/services/234.png",
+//   },
+//   {
+//     id: 3,
+//     title: "Premium Brake Pads",
+//     description:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisl at facilisis hendrerit, arcu sapien ullamcorper orci, non gravida tortor nibh non lorem. Integer non felis nec justo",
+//     image: "https://api.progarage.store/static/services/123.png",
+//   },
+// ];
 
-const OurServices = () => {
+const OurServices = ({servicesData}) => {
   // when click in read more button, it will display sweet alert with the service title and description
   const handleReadMore = (title, description) => {
     Swal.fire({

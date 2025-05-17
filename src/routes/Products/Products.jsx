@@ -50,10 +50,6 @@ const Products = () => {
         setBrands(brandsResponse.data.data || []);
         setTypes(typesResponse.data.data || []);
         setCategories(categoriesResponse.data.data || []);
-        console.log("Brands:", brandsResponse.data);
-        console.log("Types:", typesResponse.data);
-        console.log("Categories:", categoriesResponse.data);
-        
 
         // Initial product fetch
         await fetchProducts(token);
@@ -149,7 +145,6 @@ const Products = () => {
               </div>
             ) : (
               <div className="row g-3">
-                {console.log("Products:", products)}
                 {products.map((product, idx) => (
                   <motion.div
                     initial={{ opacity: 0, y: 100 }}

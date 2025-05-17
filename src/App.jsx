@@ -9,6 +9,7 @@ import RepairRequest from "./routes/RepairRequest/RepairRequest";
 import Products from "./routes/Products/Products";
 import Home from "./routes/Home/Home";
 import Spinner from "./Components/Ui/Spinner/Spinner";
+import HomeContentProvider from "./contexts/homeContentContext";
 
 const Login = lazy(() => import("./routes/Login/Login"));
 const Register = lazy(() => import("./routes/Register/Register"));
@@ -126,7 +127,9 @@ export default function App() {
   return (
     <AuthProvider>
       <IsMobileProvider>
-        <RouterProvider router={router} />
+        <HomeContentProvider>
+          <RouterProvider router={router} />
+        </HomeContentProvider>
       </IsMobileProvider>
     </AuthProvider>
   );
@@ -138,27 +141,33 @@ export default function App() {
  *      - AuthContext Done ✅
  *      - CartContext
  *      - IsMobileContext Done ✅
+ *      - HomeContentContext Done ✅
  * Main Component
- *      -Navbar
- *      -Footer
- *      -Login
- *      -Register
+ *      -Navbar Done ✅
+ *      -Footer Done ✅
+ *      -WhatsappComponent Done ✅
+ *     - ProfileIcon Done ✅
+ *     - ScrollToTop Done ✅
+ *     - Spinner Done ✅
+ *     - ProtectedRoute Done ✅
+ *     - InverseProtectedRoute Done ✅
+ *     -mobileMenu
  * routes
  *      - Home
- *      - About
- *      - Services
- *      - Products
+ *      - About (protected) Done ✅
+ *      - Products (protected) Done ✅
  *               - Filter
  *               - Product Card
  *      - Product Details
  *      - Product Description
- *      - Contact
- *      - Forget Password
+ *      - Contact (protected) Done ✅
+ *      -Login (protected) Done ✅
+ *      -Register (protected) Done ✅
+ *      - Forget Password Email (protected) Done ✅
  *                - send Otp
  *                - Verify Otp
  *                - Reset Password
- *      - verify Email
- *
+ *      - verify Email (protected) Done ✅
  *      - Error 404
  *      - Profile
  *      - Cart

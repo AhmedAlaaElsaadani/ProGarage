@@ -9,38 +9,38 @@ import style from "./HomeScrollBar.module.css";
 import categoryImage from "../../assets/Images/category.png"; // Replace with your actual image path
 export default function HomeScrollBar({ categories }) {
   // Define categories with exactly 5 items
-  const categoriesX = [
-    {
-      id: 1,
-      title: "Spare parts",
-      image:
-        "https://th.bing.com/th/id/OIP.foZwLuG4H4xlEEKLDcZF9gHaD8?w=327&h=180&c=7&r=0&o=5&pid=1.7", // Replace with your actual wheel icon path
-    },
-    {
-      id: 2,
-      title: "Spare parts",
-      image:
-        "https://th.bing.com/th/id/OIP.foZwLuG4H4xlEEKLDcZF9gHaD8?w=327&h=180&c=7&r=0&o=5&pid=1.7",
-    },
-    {
-      id: 3,
-      title: "Spare parts",
-      image:
-        "https://th.bing.com/th/id/OIP.foZwLuG4H4xlEEKLDcZF9gHaD8?w=327&h=180&c=7&r=0&o=5&pid=1.7",
-    },
-    {
-      id: 4,
-      title: "Spare parts",
-      image:
-        "https://th.bing.com/th/id/OIP.foZwLuG4H4xlEEKLDcZF9gHaD8?w=327&h=180&c=7&r=0&o=5&pid=1.7",
-    },
-    {
-      id: 5,
-      title: "Spare parts",
-      image:
-        "https://th.bing.com/th/id/OIP.foZwLuG4H4xlEEKLDcZF9gHaD8?w=327&h=180&c=7&r=0&o=5&pid=1.7",
-    },
-  ];
+  // const categories = [
+  //   {
+  //     id: 1,
+  //     title: "Spare parts",
+  //     image:
+  //       "https://th.bing.com/th/id/OIP.foZwLuG4H4xlEEKLDcZF9gHaD8?w=327&h=180&c=7&r=0&o=5&pid=1.7", // Replace with your actual wheel icon path
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Spare parts",
+  //     image:
+  //       "https://th.bing.com/th/id/OIP.foZwLuG4H4xlEEKLDcZF9gHaD8?w=327&h=180&c=7&r=0&o=5&pid=1.7",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Spare parts",
+  //     image:
+  //       "https://th.bing.com/th/id/OIP.foZwLuG4H4xlEEKLDcZF9gHaD8?w=327&h=180&c=7&r=0&o=5&pid=1.7",
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Spare parts",
+  //     image:
+  //       "https://th.bing.com/th/id/OIP.foZwLuG4H4xlEEKLDcZF9gHaD8?w=327&h=180&c=7&r=0&o=5&pid=1.7",
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "Spare parts",
+  //     image:
+  //       "https://th.bing.com/th/id/OIP.foZwLuG4H4xlEEKLDcZF9gHaD8?w=327&h=180&c=7&r=0&o=5&pid=1.7",
+  //   },
+  // ];
 
   return (
     <div
@@ -83,7 +83,7 @@ export default function HomeScrollBar({ categories }) {
             modules={[Scrollbar, Navigation]}
             className={style.categorySwiper}
           >
-            {categoriesX.map((category) => (
+            {categories.map((category) => (
               <SwiperSlide key={category.id} className={style.categorySlide}>
                 <div className={style.categoryCard}>
                   <div className={style.iconContainer}>

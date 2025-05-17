@@ -134,6 +134,11 @@ button:active {
 /* Swiper override */
 /* Service Cards Equal Height Styles */
 /* Service Cards Equal Height Styles */
+.swiper-wrapper{
+  display: flex;
+  align-items: stretch; /* Ensure all slides stretch to the same height */
+  justify-content: center;
+}
 .swiper-slide {
   height: auto;
 }

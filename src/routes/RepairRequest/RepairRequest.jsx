@@ -147,13 +147,12 @@ export default function RepairRequest() {
 
       // Make the API call using the askForRepair method
       const response = await ApiManager.askForRepair(repairParams, token);
-
-      console.log("Repair request response:", response);
-
-      setResMessage({
-        flag: true,
-        message: "Your repair request has been submitted successfully!",
-      });
+      if (response.success) {
+        setResMessage({
+          flag: true,
+          message: "Your repair request has been submitted successfully!",
+        });
+      }
       formik.resetForm();
       setSelectedImages([]);
       setImagePreview(null);
@@ -212,7 +211,6 @@ export default function RepairRequest() {
               />
             </div>
           </div>
-
           <div className="mb-4">
             <Textarea
               myFormik={formik}
@@ -333,7 +331,6 @@ export default function RepairRequest() {
               </div>
             </div>
           </div>
-
           <button
             type="submit"
             className="btn-web btn-web-primary mt-4 w-100"
@@ -352,7 +349,6 @@ export default function RepairRequest() {
               "Submit Request"
             )}
           </button>
-
           {resMessage.message && (
             <div
               className={`mt-3 ${
