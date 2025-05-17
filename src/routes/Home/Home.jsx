@@ -4,6 +4,7 @@ import HomeScrollBar from "../../Components/HomeScrollBar/HomeScrollBar";
 import OurServices from "../../Components/OurServices/OurServices";
 import Spinner from "../../Components/Ui/Spinner/Spinner";
 import { HomeContentContext } from "../../Contexts/homeContentContext.jsx";
+import Hero from "../../Components/Hero/Hero.jsx";
 
 export default function Home() {
   const { isLoading, homeContent } = useContext(HomeContentContext);
@@ -14,7 +15,8 @@ export default function Home() {
         <Spinner />
       ) : (
         <>
-          {/* <Hero/> */}
+        {/* still working */}
+          <Hero products={homeContent.products} /> 
           <OurServices servicesData={homeContent.services} />
           <HomeScrollBar categories={homeContent.productCategories} />
           <AskForRepair />

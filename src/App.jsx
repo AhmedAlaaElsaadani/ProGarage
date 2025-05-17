@@ -12,6 +12,7 @@ import Spinner from "./Components/Ui/Spinner/Spinner";
 import HomeContentProvider from "./Contexts/homeContentContext";
 import MyOrders from "./routes/MyOrders/MyOrders";
 import MyRepairRequests from "./routes/MyRepairRequests/MyRepairRequests";
+import OrderDetails from "./routes/OrderDetails/OrderDetails";
 
 const Login = lazy(() => import("./routes/Login/Login"));
 const Register = lazy(() => import("./routes/Register/Register"));
@@ -77,7 +78,11 @@ export default function App() {
         },
         {
           path: "/my-orders/:orderId",
-          element: <div>MyOrdersDetails</div>,
+          element: (
+            <ProtectedRoute>
+              <OrderDetails />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/my-Repair-requests",
