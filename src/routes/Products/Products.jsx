@@ -13,7 +13,7 @@ const Products = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { token, isRegistered } = useContext(authContext);
+  const { token } = useContext(authContext);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);

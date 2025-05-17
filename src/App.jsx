@@ -2,14 +2,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React, { lazy, Suspense } from "react";
 import RoutLayout from "./routes/RoutLayout/RoutLayout";
 import About from "./routes/About/About";
-import IsMobileProvider from "./contexts/IsMobileContext";
+import IsMobileProvider from "./Contexts/IsMobileContext";
 import AuthProvider from "./Contexts/authContext";
 import Contact from "./routes/Contact/Contact";
 import RepairRequest from "./routes/RepairRequest/RepairRequest";
 import Products from "./routes/Products/Products";
 import Home from "./routes/Home/Home";
 import Spinner from "./Components/Ui/Spinner/Spinner";
-import HomeContentProvider from "./contexts/homeContentContext";
+import HomeContentProvider from "./Contexts/homeContentContext";
+import MyOrders from "./routes/MyOrders/MyOrders";
+import MyRepairRequests from "./routes/MyRepairRequests/MyRepairRequests";
 
 const Login = lazy(() => import("./routes/Login/Login"));
 const Register = lazy(() => import("./routes/Register/Register"));
@@ -60,6 +62,26 @@ export default function App() {
         {
           path: "/Products",
           element: <Products />,
+        },
+        {
+          path: "/ProductDetails/:productId",
+          element: <div>ProductDetails</div>,
+        },
+        {
+          path: "/my-orders",
+          element: (
+            <ProtectedRoute>
+              <MyOrders />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/my-orders/:orderId",
+          element: <div>MyOrdersDetails</div>,
+        },
+        {
+          path: "/my-Repair-requests",
+          element: <MyRepairRequests />,
         },
         //Login and Register
         {

@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./ProductCard.module.css";
-import carDoorImage from "../../assets/Images/door.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { authContext } from "../../Contexts/authContext";
+import Swal from "sweetalert2";
 
 const ProductCard = ({ product }) => {
   const { title, brand, price, year, images } = product;
+  const { token, isRegistered } = useContext(authContext);
+  const navigate = useNavigate();
   const handleAddToCart = () => {
-    
+    // not Registered
+    if (!isRegistered) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You need to be logged in to add products to your cart.",
+      }).then(() => {
+        navigate("/login");
+      });
+      return;
+    }
   };
 
   return (

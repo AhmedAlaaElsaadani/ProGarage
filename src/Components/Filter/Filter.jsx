@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import styles from "./Filter.module.css";
-import { IsMobileContext } from "../../contexts/IsMobileContext";
+import { IsMobileContext } from "../../Contexts/IsMobileContext";
 import { motion } from "framer-motion";
 
 const Filter = ({ filters, onFilterChange, brands, types, categories }) => {

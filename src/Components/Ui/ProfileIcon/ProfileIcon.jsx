@@ -22,12 +22,12 @@ const ProfileIcon = () => {
     },
     {
       icon: <i className="fa-solid fa-sort"></i>,
-      to: "/myOrders",
+      to: "/my-Orders",
       text: "My Orders",
     },
     {
       icon: <i className="fa-solid fa-lg fa-screwdriver-wrench"></i>,
-      to: "/My-Repair-Requests",
+      to: "/my-Repair-requests",
       text: "My Repair Requests",
     }
   ]);
@@ -69,7 +69,7 @@ const ProfileIcon = () => {
           }
           onClick={toggleNavbarModal}
         >
-          <i class="fa-solid fa-user fa-2x m-2"></i>
+          <i className="fa-solid fa-user fa-2x m-2"></i>
         </motion.div>
       </div>
       {showSubMenu && (

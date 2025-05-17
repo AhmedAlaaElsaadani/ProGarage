@@ -237,30 +237,6 @@ export default class ApiManager {
   }
 
   /********************Cart Page****************************/
-  // payment Api <-- getPaymentMethods,  -->
-  /**
-   * get payment methods
-   * @returns {object} response
-   */
-  static async getPaymentMethods() {
-    const axiosResult = await axios.get(baseUrl + "/cart/payment-methods", {
-      headers: getHeaders(),
-    });
-    return axiosResult;
-  }
-  /**
-   * create a payment
-   * @param {object} data
-   * @param {string} token
-   * @returns {object} response
-   *
-   */
-  static async createPayment(data, token) {
-    const axiosResult = await axios.post(baseUrl + "/orders", data, {
-      headers: getHeaders(token),
-    });
-    return axiosResult;
-  }
 
   // unAuthorized services Api <-- Home , contactUs, askForRepair-->
   /********************Home Page****************************/
@@ -275,6 +251,7 @@ export default class ApiManager {
     });
     return axiosResult;
   }
+  /********************Contact Page****************************/
   /**
    * Contact us
    * @param {object} data
@@ -289,6 +266,8 @@ export default class ApiManager {
 
     return axiosResult;
   }
+  /********************Products Page****************************/
+
   /**
    * Get Products with filters and pagination
    * @param {object} filters - Filter and pagination parameters
@@ -312,12 +291,12 @@ export default class ApiManager {
 
     return response;
   }
-   /**
+  /**
    * Get Brands
    * @param {string} token
    * @returns {Promise<object>}
    */
-   static async getBrands(token) {
+  static async getBrands(token) {
     const response = await axios.get(`${baseUrl}/brands`, {
       headers: getHeaders(token),
     });
@@ -412,6 +391,8 @@ export default class ApiManager {
     );
     return axiosResult;
   }
+  /********************Ask For repair Page****************************/
+
   /**
    * Ask for Repair
    * @param {object} params
@@ -440,6 +421,68 @@ export default class ApiManager {
       headers: getHeaders(token),
     });
 
+    return response;
+  }
+
+  /**
+   * Get Repair Requests
+   * @param {string} token
+   * @returns {Promise<object>}
+   */
+  static async getRepairRequests(token) {
+    const response = await axios.get(`${baseUrl}/repair-request`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response;
+  }
+  /**
+   * Delete Repair Request by ID
+   * @param {string} token - Authorization token
+   * @param {string} requestId - ID of the repair request to delete
+   * @returns {Promise<object>}
+   */
+  static async cancelRepairRequest(token, requestId) {
+    const response = await axios.delete(
+      `${baseUrl}/repair-request/${requestId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+          // Only include Cookie if actually required and safe
+          // Cookie: ".AspNetCore.Identity.Application=...; refreshToken=..."
+        },
+        withCredentials: true, // if backend requires sending cookies
+      }
+    );
+
+    return response;
+  }
+  /********************my Order Page****************************/
+  /**
+   * Get All Orders
+   * @param {string} token
+   * @returns {Promise<object>}
+   */
+  static async getAllOrders(token) {
+    const response = await axios.get(`${baseUrl}/orders`, {
+      headers: getHeaders(token),
+    });
+    return response;
+  }
+
+  /**
+   * Get Order by ID
+   * @param {string} token
+   * @param {number|string} orderId
+   * @returns {Promise<object>}
+   */
+  static async getOrderById(token, orderId) {
+    const response = await axios.get(`${baseUrl}/orders/${orderId}`, {
+      headers: getHeaders(token),
+    });
     return response;
   }
 }

@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import style from "./Navbar.module.css";
 import { motion } from "framer-motion";
-import { IsMobileContext } from "../../contexts/IsMobileContext";
+import { IsMobileContext } from "../../Contexts/IsMobileContext";
 import { authContext } from "../../Contexts/authContext";
 // import NavbarTop from "../NavbarTop/NavbarTop";
 // import SubMenuNavbar from "../Ui/SubMenuNavbar/SubMenuNavbar";

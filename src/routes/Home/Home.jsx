@@ -3,7 +3,7 @@ import AskForRepair from "../../Components/AskForRepair/AskForRepair";
 import HomeScrollBar from "../../Components/HomeScrollBar/HomeScrollBar";
 import OurServices from "../../Components/OurServices/OurServices";
 import Spinner from "../../Components/Ui/Spinner/Spinner";
-import { HomeContentContext } from "../../contexts/homeContentContext";
+import { HomeContentContext } from "../../Contexts/homeContentContext.jsx";
 
 export default function Home() {
   const { isLoading, homeContent } = useContext(HomeContentContext);
@@ -15,7 +15,7 @@ export default function Home() {
       ) : (
         <>
           {/* <Hero/> */}
-          <OurServices  servicesData={homeContent.services} />
+          <OurServices servicesData={homeContent.services} />
           <HomeScrollBar categories={homeContent.productCategories} />
           <AskForRepair />
         </>
