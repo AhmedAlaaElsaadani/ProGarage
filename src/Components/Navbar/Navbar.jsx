@@ -1,14 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Link, useLocation } from "react-router-dom";
-// import logo from "../../assets/Images/logo.svg";
 import { HashLink } from "react-router-hash-link";
 import style from "./Navbar.module.css";
 import { motion } from "framer-motion";
 import { IsMobileContext } from "../../Contexts/IsMobileContext";
 import { authContext } from "../../Contexts/authContext";
-// import NavbarTop from "../NavbarTop/NavbarTop";
-// import SubMenuNavbar from "../Ui/SubMenuNavbar/SubMenuNavbar";
 import whiteLogo from "../../assets/Images/whiteLogo.svg";
 import Swal from "sweetalert2";
 import ApiManager from "../../Utilies/ApiManager";
@@ -89,19 +86,6 @@ const Navbar = () => {
   const hideNavbar = () => {
     navbarCollapse.hide();
   };
-
-  // const toggleLanguage = () => {
-  //   let flagDirection = i18n.language == "en";
-
-  //   flagDirection ? i18n.changeLanguage("ar") : i18n.changeLanguage("en");
-  //   if (flagDirection) {
-  //     document.body.style.direction = "rtl";
-  //     document.title = "منصة حروف التعليمبة";
-  //   } else {
-  //     document.body.style.direction = "ltr";
-  //     document.title = "Harouf Education Platform";
-  //   }
-  // };
   useEffect(() => {
     // Manually collapse the navbar when a link is clicked
     setNavbarCollapse(

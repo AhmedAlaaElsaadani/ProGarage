@@ -225,7 +225,7 @@ export default function RepairRequest() {
               idx={1}
             />
           </div>
-          /
+          
           <div className="row mt-4 align-items-stretch">
             <div className="col-md-6 mb-4">
               <p className={style.sectionLabel}>

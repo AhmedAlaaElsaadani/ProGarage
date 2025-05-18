@@ -1,4 +1,6 @@
+// بتبدل بين الصفحات 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+//Swiper
 import React, { lazy, Suspense } from "react";
 import RoutLayout from "./routes/RoutLayout/RoutLayout";
 import About from "./routes/About/About";
@@ -81,6 +83,7 @@ export default function App() {
         {
           path: "/my-orders",
           element: (
+            // if user is not logged in, redirect to login page
             <ProtectedRoute>
               <MyOrders />
             </ProtectedRoute>
@@ -173,6 +176,7 @@ export default function App() {
     </AuthProvider>
   );
 }
+// SPA
 
 /**
  * *** App Structure ***
@@ -209,7 +213,7 @@ export default function App() {
  *      - verify Email (protected) Done ✅
  *      - Error 404
  *      - Profile
- *      - Cart
- *      - My Orders
- *      - My Orders Details
+ *      - Cart Done ✅
+ *      - My Orders Done ✅
+ *      - My Orders Details Done ✅
  */

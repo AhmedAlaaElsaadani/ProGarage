@@ -15,10 +15,13 @@ export default function Home() {
         <Spinner />
       ) : (
         <>
-        {/* still working */}
-          <Hero products={homeContent.products} /> 
+          {/* Slider Products  */}
+          <Hero products={homeContent.products} />
+          {/* Our Services  */}
           <OurServices servicesData={homeContent.services} />
+          {/* Our Cate */}
           <HomeScrollBar categories={homeContent.productCategories} />
+          {/* Ask For Repair  */}
           <AskForRepair />
         </>
       )}

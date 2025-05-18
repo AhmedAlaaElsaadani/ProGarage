@@ -1,4 +1,3 @@
-// import { useTranslation } from "react-i18next";
 import style from "./FloatingInput.module.css";
 import { motion } from "framer-motion";
 import { useState } from "react";

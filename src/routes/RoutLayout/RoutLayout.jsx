@@ -10,18 +10,19 @@ import { authContext } from "../../Contexts/authContext.jsx";
 import ProfileIcon from "../../Components/Ui/ProfileIcon/ProfileIcon.jsx";
 
 export default function RoutLayout() {
-  const { isMobile } = useContext(IsMobileContext);
+  // const { isMobile } = useContext(IsMobileContext);
   const { isRegistered } = useContext(authContext);
 
   return (
     <>
+      {/* Scroll to top */}
       <ScrollToTop />
 
-      <Suspense fallback={<Spinner sectionFlag={false} />}>
-        <Navbar />
-        <WhatsappComponent />
-        {isRegistered && <ProfileIcon />}
-      </Suspense>
+      {/* <Suspense fallback={<Spinner sectionFlag={false} />}> */}
+      <Navbar />
+      <WhatsappComponent />
+      {isRegistered && <ProfileIcon />}
+      {/* </Suspense> */}
       <Outlet />
       <Footer />
     </>

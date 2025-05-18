@@ -126,7 +126,7 @@ const ProductDetails = () => {
               <h4 className="alert-heading">Error!</h4>
               <p>{error}</p>
               <button 
-                className="btn btn-primary" 
+                className="btn-web btn-web-outline-primary" 
                 onClick={() => navigate(-1)}
               >
                 Go Back
@@ -147,7 +147,7 @@ const ProductDetails = () => {
               <h4 className="alert-heading">Product Not Found</h4>
               <p>The product you're looking for doesn't exist.</p>
               <button 
-                className="btn btn-primary" 
+                className="btn-web btn-web-primary" 
                 onClick={() => navigate(-1)}
               >
                 Go Back

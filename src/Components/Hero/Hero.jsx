@@ -34,9 +34,6 @@ const Hero = ({ products }) => {
 
       setDisplayProducts(products)
     }
-    console.log("Fadsigj", displayProducts)
-    console.log(products);
-
 
   }, [])
 
