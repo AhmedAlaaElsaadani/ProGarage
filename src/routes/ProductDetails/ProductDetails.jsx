@@ -26,30 +26,30 @@ const ProductDetails = () => {
         
         if (response.data && response.data.success && response.data.data.data.length > 0) {
           setProduct(
-            {
+            // {
                 
-                "id": 14,
-                "title": "oil filter",
-                "description": "Korean",
-                "price": 350.00,
-                "year": 2015,
-                "transmission": "Automatic",
-                "trader": "تاجر Trader",
-                "traderId": "e61bd208-0593-43ea-905d-aab9f8cd05c1",
-                "brandId": 10,
-                "brand": "Hyundai",
-                "typeId": 8,
-                "type": "Crossover",
-                "category": "Wheels",
-                "categoryId": 1,
-                "images": [
-                    "https://api.progarage.store/static/Products/9965854.png",
-                    "https://api.progarage.store/static/Products/9965854.png",
-                    "https://api.progarage.store/static/Products/9965854.png",
-                    "https://api.progarage.store/static/Products/9965854.png",
-                ]
-            }
-            // response.data.data.data[0]
+            //     "id": 14,
+            //     "title": "oil filter",
+            //     "description": "Korean",
+            //     "price": 350.00,
+            //     "year": 2015,
+            //     "transmission": "Automatic",
+            //     "trader": "تاجر Trader",
+            //     "traderId": "e61bd208-0593-43ea-905d-aab9f8cd05c1",
+            //     "brandId": 10,
+            //     "brand": "Hyundai",
+            //     "typeId": 8,
+            //     "type": "Crossover",
+            //     "category": "Wheels",
+            //     "categoryId": 1,
+            //     "images": [
+            //         "https://api.progarage.store/static/Products/9965854.png",
+            //         "https://api.progarage.store/static/Products/9965854.png",
+            //         "https://api.progarage.store/static/Products/9965854.png",
+            //         "https://api.progarage.store/static/Products/9965854.png",
+            //     ]
+            // }
+            response.data.data.data[0]
         );
         } else {
           setError("Product not found");
