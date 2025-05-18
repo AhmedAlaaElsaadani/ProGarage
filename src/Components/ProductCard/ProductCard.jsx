@@ -3,11 +3,28 @@ import style from "./ProductCard.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../Contexts/authContext";
 import Swal from "sweetalert2";
+import { basketContext } from "../../Contexts/basketContext";
 
 const ProductCard = ({ product }) => {
   const { title, brand, price, year, images } = product;
   const { token, isRegistered } = useContext(authContext);
   const navigate = useNavigate();
+  const { addBasketItem, containInBasket } =
+    useContext(basketContext);
+
+  const createItemToCart = () => {
+    const item = {
+      id: product.id,
+      url: `${window.location.origin}/ProductDetails/${product.id}`,
+      name: product.title,
+      imageUrl: product.images[0] ||
+        "https://lexproducts.com/admin/storage/uploads/2022/06/08/62a0aa0f9834bNo-Image-Available.jpg",
+      price: product.price,
+      quantity: 1,
+    };
+    return item;
+  };
+
   const handleAddToCart = () => {
     // not Registered
     if (!isRegistered) {
@@ -19,6 +36,10 @@ const ProductCard = ({ product }) => {
         navigate("/login");
       });
       return;
+    }
+    else {
+      const item = createItemToCart();
+      addBasketItem(item);
     }
   };
 
@@ -38,7 +59,7 @@ const ProductCard = ({ product }) => {
 
       {/* year badge - conditionally rendered */}
 
-      <div className={"position-absolute " + style.discount}>{year}</div>
+      <div className={"position-absolute " + style.year}>{year}</div>
 
       {/* Product info */}
       <div className="card-body d-flex flex-column">
@@ -66,8 +87,11 @@ const ProductCard = ({ product }) => {
         <button
           onClick={handleAddToCart}
           className="btn-web btn-web-outline-primary  flex-grow-1 add-to-cart-btn"
+          disabled={containInBasket(product.id)}
+
         >
-          Order
+
+          {containInBasket(product.id) ? "In Cart" : "Order"}
           {/* <i className="fa-solid fa-cart-shopping mx-3"></i> */}
         </button>
 

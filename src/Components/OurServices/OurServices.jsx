@@ -47,7 +47,7 @@ const OurServices = ({servicesData}) => {
   };
 
   return (
-    <section className="py-5">
+    <div className="py-5">
       <div className="container">
         {/* Header Section */}
         <div className="row align-items-center justify-content-between mb-4">
@@ -166,7 +166,7 @@ const OurServices = ({servicesData}) => {
           </Swiper>
         </motion.div>
       </div>
-    </section>
+    </div>
   );
 };
 

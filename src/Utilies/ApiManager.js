@@ -292,6 +292,17 @@ export default class ApiManager {
     return response;
   }
   /**
+   * get product details by id 
+   * @param {string} id 
+   * @returns 
+   */
+  static async getProductsById(id) {
+    const response = await axios.get(`${baseUrl}/products`, {
+      params: { Id: id },
+    });
+    return response;
+  }
+  /**
    * Get Brands
    * @param {string} token
    * @returns {Promise<object>}

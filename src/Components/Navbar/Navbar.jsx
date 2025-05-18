@@ -12,6 +12,7 @@ import { authContext } from "../../Contexts/authContext";
 import whiteLogo from "../../assets/Images/whiteLogo.svg";
 import Swal from "sweetalert2";
 import ApiManager from "../../Utilies/ApiManager";
+import { basketContext } from "../../Contexts/basketContext";
 
 const Navbar = () => {
   const [navbarCollapse, setNavbarCollapse] = useState();
@@ -20,6 +21,7 @@ const Navbar = () => {
   const [active, setActive] = useState("Home");
   const navBar = useRef(null);
   const { isMobile } = useContext(IsMobileContext);
+  const { basket } = useContext(basketContext);
 
   const links = [
     {
@@ -236,6 +238,10 @@ const Navbar = () => {
                   <li>
                     <Link to="/cart" className={style.cart}>
                       <i className="fa-solid fa-cart-shopping"></i>{" "}
+
+                      <span className={style.cartCount}>
+                        {basket ? basket.items.length : 0}
+                      </span>
                     </Link>
                   </li>
                   <li>

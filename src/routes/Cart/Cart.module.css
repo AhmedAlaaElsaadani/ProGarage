@@ -1,0 +1,145 @@
+.cartTitle {
+  color: var(--black-light-color);
+  font-size: 1.5rem;
+  font-weight: 600px;
+}
+.cartTitle span {
+  color: var(--primary-color);
+}
+
+.cardTotal {
+  background-color: var(--bg-color);
+  box-shadow: 0 2px 4px var(--border-color);
+  padding: 1rem;
+  border-radius: 10px;
+}
+.cardTotalTittle {
+  font-size: 1.3rem;
+  color: var(--black-light-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.bordetTOPBottom {
+  border-top: 0.5px solid var(--border-color);
+  padding: 0.75rem 0;
+  border-bottom: 0.5px solid var(--border-color);
+}
+.cardTotalLabel {
+  color: var(--black-light-color);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0;
+}
+.cardTotalPrice {
+  color: var(--black-light-color);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.cardTotaldiscount {
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.discountInputContainer {
+  /* padding: 5px; */
+  gap: 10px;
+}
+input.discountInput {
+  border: 0.5px solid var(--border-color);
+  flex-grow: 1;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 100px;
+  outline: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+input.discountInput:disabled {
+  color: var(--black-light-color) !important;
+}
+.discountInputContainer input::placeholder {
+  /* color: #fff !important; */
+  font-size: 1rem;
+  font-weight: 500;
+}
+.applyDiscount {
+  padding: 0.5rem 1rem;
+  background-color: var(--yellow);
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.cardTotalSumary {
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 600;
+}
+.payNow {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.payNow a {
+  color: #fff;
+}
+/*-------------------NoData----------------------*/
+.noData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.noData img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+.noData h2 {
+  color: var(--black-light-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.noData a {
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+@media (max-width: 768px) {
+  .cartCard {
+    flex-direction: column;
+  }
+  .cartCard img {
+    width: 100%;
+    height: 200px;
+  }
+  .cartCardTitle {
+    font-size: 1rem;
+  }
+  .cartCardText {
+    font-size: 0.8rem;
+  }
+}

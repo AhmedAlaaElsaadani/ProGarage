@@ -13,6 +13,9 @@ import HomeContentProvider from "./Contexts/homeContentContext";
 import MyOrders from "./routes/MyOrders/MyOrders";
 import MyRepairRequests from "./routes/MyRepairRequests/MyRepairRequests";
 import OrderDetails from "./routes/OrderDetails/OrderDetails";
+import BasketProvider from "./Contexts/basketContext";
+import ProductDetails from "./routes/ProductDetails/ProductDetails";
+import Cart from "./routes/Cart/Cart";
 
 const Login = lazy(() => import("./routes/Login/Login"));
 const Register = lazy(() => import("./routes/Register/Register"));
@@ -65,8 +68,12 @@ export default function App() {
           element: <Products />,
         },
         {
-          path: "/ProductDetails/:productId",
-          element: <div>ProductDetails</div>,
+          path: "/product/:id",
+          element: <ProductDetails />,
+        },
+        {
+          path: "/Cart",
+          element: <Cart />,
         },
         {
           path: "/my-orders",
@@ -155,7 +162,9 @@ export default function App() {
     <AuthProvider>
       <IsMobileProvider>
         <HomeContentProvider>
-          <RouterProvider router={router} />
+          <BasketProvider>
+            <RouterProvider router={router} />
+          </BasketProvider>
         </HomeContentProvider>
       </IsMobileProvider>
     </AuthProvider>
@@ -166,7 +175,7 @@ export default function App() {
  * *** App Structure ***
  * Contexts
  *      - AuthContext Done ✅
- *      - CartContext
+ *      - CartContext Done ✅
  *      - IsMobileContext Done ✅
  *      - HomeContentContext Done ✅
  * Main Component
