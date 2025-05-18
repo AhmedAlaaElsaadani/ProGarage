@@ -73,7 +73,10 @@ export default function App() {
         },
         {
           path: "/Cart",
-          element: <Cart />,
+          element:
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>,
         },
         {
           path: "/my-orders",

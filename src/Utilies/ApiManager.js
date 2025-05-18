@@ -292,9 +292,9 @@ export default class ApiManager {
     return response;
   }
   /**
-   * get product details by id 
-   * @param {string} id 
-   * @returns 
+   * get product details by id
+   * @param {string} id
+   * @returns
    */
   static async getProductsById(id) {
     const response = await axios.get(`${baseUrl}/products`, {
@@ -494,6 +494,22 @@ export default class ApiManager {
     const response = await axios.get(`${baseUrl}/orders/${orderId}`, {
       headers: getHeaders(token),
     });
+    return response;
+  }
+  /**
+   *
+   * @param {string} id
+   * @param {string} token
+   * @returns
+   */
+  static async requestOrder(id, token) {
+    const response = await axios.post(
+      `${baseUrl}/orders/${id}`,
+      {},
+      {
+        headers: getHeaders(token),
+      }
+    );
     return response;
   }
 }

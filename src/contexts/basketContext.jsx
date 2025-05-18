@@ -117,6 +117,49 @@ export default function BasketProvider({ children }) {
     }
   };
 
+  const increaseItemQuantityByOne = async (id) => {
+    try {
+      let basketCopyItems = [...basket.items];
+      let itemIndex = basketCopyItems.findIndex(
+        (basketItem) => basketItem.id === id
+      );
+
+      if (itemIndex !== -1) {
+        basketCopyItems[itemIndex].quantity += 1;
+        basketCopyItems[itemIndex].total = basketCopyItems[itemIndex].price * basketCopyItems[itemIndex].quantity;
+        let basketCopy = { ...basket, items: basketCopyItems };
+        await updateBasket(basketCopy);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const decreaseItemQuantityByOne = async (id) => {
+    try {
+      let basketCopyItems = [...basket.items];
+      let itemIndex = basketCopyItems.findIndex(
+        (basketItem) => basketItem.id === id
+      );
+
+      if (itemIndex !== -1) {
+        if (basketCopyItems[itemIndex].quantity > 1) {
+          basketCopyItems[itemIndex].quantity -= 1;
+          basketCopyItems[itemIndex].total = basketCopyItems[itemIndex].price * basketCopyItems[itemIndex].quantity;
+          let basketCopy = { ...basket, items: basketCopyItems };
+          await updateBasket(basketCopy);
+        } else {
+          // If quantity is 1, remove the item completely
+          basketCopyItems.splice(itemIndex, 1);
+          let basketCopy = { ...basket, items: basketCopyItems };
+          await updateBasket(basketCopy);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const containInBasket = (id) => {
 
     return basket?.items?.some((item) => item.id === id) || false;
@@ -173,6 +216,8 @@ export default function BasketProvider({ children }) {
         applyCoupon,
         setCoupon,
         coupon,
+        increaseItemQuantityByOne,
+        decreaseItemQuantityByOne,
       }}
     >
       {children}

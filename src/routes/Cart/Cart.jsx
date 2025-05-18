@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Heading from "../../Components/Ui/Heading/Heading";
+import ApiManager from "../../Utilies/ApiManager";
 
 const Cart = () => {
   const { isRegistered, token } = useContext(authContext);
@@ -16,8 +17,9 @@ const Cart = () => {
     applyCoupon,
     coupon,
     setCoupon,
+    increaseItemQuantityByOne,
+    decreaseItemQuantityByOne,
   } = useContext(basketContext);
-  const [showModal, setShowModal] = useState(false);
 
   const removeItem = (id) => {
     Swal.fire({
@@ -51,13 +53,35 @@ const Cart = () => {
       }
     });
   };
-
-  const payNow = () => {
+  const payNow = async () => {
     if (isRegistered) {
-      console.log("Proceeding to checkout...");
-      console.log("Cart ID:", basket?.id);
-      console.log("Total Price:", basket?.totalPrice);
-      console.log("Items:", basket?.items);
+      try {
+        const response = await ApiManager.requestOrder(basket.id, token);
+
+        if (response.data.success) {
+          Swal.fire({
+            title: "Order Created Successfully!",
+            text: `Order ID: ${response.data.data.id}`,
+            icon: "success",
+            confirmButtonText: "OK",
+          }).then(() => {
+            navigate(`/my-orders/${response.data.data.id}`);
+          });
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: response.data.message || "Something went wrong.",
+            icon: "error",
+          });
+        }
+      } catch (error) {
+        console.error("Order creation failed:", error);
+        Swal.fire({
+          title: "Error",
+          text: "Something went wrong while creating the order.",
+          icon: "error",
+        });
+      }
     } else {
       Swal.fire({
         title: "You must be logged in to proceed",
@@ -71,23 +95,8 @@ const Cart = () => {
       });
     }
   };
-
   const formatPrice = (price) => {
     return price?.toFixed(2) || "0.00";
-  };
-
-  const updateQuantity = async (item, change) => {
-    if (change < 0) {
-      // Decrease quantity by removing item
-      await removeBasketItem(item.id);
-    } else {
-      // For increase, you'd need to implement an increase quantity function
-      // Since your current basket context only has removeBasketItem,
-      // we'll just add the item again
-      const itemToAdd = { ...item, quantity: 1 };
-      // This would require modifying your addBasketItem to handle existing items
-      console.log("Increase quantity not implemented yet");
-    }
   };
 
   useEffect(() => {
@@ -184,7 +193,7 @@ const Cart = () => {
                             <div className="d-flex align-items-center">
                               <button
                                 className="btn btn-outline-danger btn-sm me-2"
-                                onClick={() => updateQuantity(item, -1)}
+                                onClick={async () => decreaseItemQuantityByOne(item.id)}
                                 disabled={item.quantity <= 1}
                               >
                                 -
@@ -192,7 +201,7 @@ const Cart = () => {
                               <span className="mx-2 fw-bold">{item.quantity}</span>
                               <button
                                 className="btn btn-outline-success btn-sm ms-2"
-                                onClick={() => updateQuantity(item, 1)}
+                                onClick={async () => increaseItemQuantityByOne(item.id)}
                               >
                                 +
                               </button>
@@ -282,7 +291,7 @@ const Cart = () => {
                       <input
                         id="couponInput"
                         type="text"
-                        className="form-control shadow-none" 
+                        className="form-control shadow-none"
                         style={{ outline: 'none !important' }}
                         placeholder="Enter coupon code"
                         value={coupon || ''}
@@ -336,7 +345,7 @@ const Cart = () => {
                     className="btn btn-danger btn-lg"
                     onClick={payNow}
                   >
-                    Proceed to Checkout
+                    Oder Now
                   </button>
                 </div>
               </div>
