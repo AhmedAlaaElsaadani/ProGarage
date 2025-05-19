@@ -152,7 +152,7 @@ export default function RepairRequest() {
 
       // Make the API call using the askForRepair method
       const response = await ApiManager.askForRepair(repairParams, token);
-      if (response.success) {
+      if (response.data.success) {
         setResMessage({
           flag: true,
           message: "Your repair request has been submitted successfully!",

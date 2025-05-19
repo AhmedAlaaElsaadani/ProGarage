@@ -433,7 +433,7 @@ export default class ApiManager {
     }
 
     const response = await axios.post(`${baseUrl}/repair-request`, formData, {
-      headers: getHeaders(token),
+      headers: { ...getHeaders(token), "Content-Type": "multipart/form-data" },
     });
 
     return response;
@@ -443,7 +443,7 @@ export default class ApiManager {
    * Get Repair Requests
    * @param {string} token
    * @returns {Promise<object>}
-   */ 
+   */
   static async getRepairRequests(token) {
     const response = await axios.get(`${baseUrl}/repair-request`, {
       headers: {
@@ -463,13 +463,7 @@ export default class ApiManager {
     const response = await axios.delete(
       `${baseUrl}/repair-request/${requestId}`,
       {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-          // Only include Cookie if actually required and safe
-          // Cookie: ".AspNetCore.Identity.Application=...; refreshToken=..."
-        },
-        withCredentials: true, // if backend requires sending cookies
+        headers: getHeaders(token),
       }
     );
 
