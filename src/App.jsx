@@ -1,7 +1,7 @@
 // بتبدل بين الصفحات 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //Swiper
-import React, { lazy, Suspense } from "react";
+
 import RoutLayout from "./routes/RoutLayout/RoutLayout";
 import About from "./routes/About/About";
 import IsMobileProvider from "./Contexts/IsMobileContext";
@@ -19,26 +19,19 @@ import BasketProvider from "./Contexts/basketContext";
 import ProductDetails from "./routes/ProductDetails/ProductDetails";
 import Cart from "./routes/Cart/Cart";
 
-const Login = lazy(() => import("./routes/Login/Login"));
-const Register = lazy(() => import("./routes/Register/Register"));
-const EmailConfirmOtp = lazy(() =>
-  import("./routes/EmailConfirmOtp/EmailConfirmOtp")
-);
-const ProtectedRoute = lazy(() =>
-  import("./Components/ProtectedRoute/ProtectedRoute")
-);
-const InverseProtectedRoute = lazy(() =>
-  import("./Components/InverseProtectedRoute/InverseProtectedRoute")
-);
-const ForgetPasswordEmail = lazy(() =>
-  import("./routes/ForgetPasswordEmail/ForgetPasswordEmail")
-);
-const ForgetPasswordConfirmOtp = lazy(() =>
-  import("./routes/ForgetPasswordConfirmOtp/ForgetPasswordConfirmOtp")
-);
-const ForgetPasswordResetPass = lazy(() =>
-  import("./routes/ForgetPasswordResetPass/ForgetPasswordResetPass")
-);
+import Login from "./routes/Login/Login";
+import Register from "./routes/Register/Register";
+
+import EmailConfirmOtp from "./routes/EmailConfirmOtp/EmailConfirmOtp";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
+import InverseProtectedRoute from "./Components/InverseProtectedRoute/InverseProtectedRoute";
+
+import ForgetPasswordConfirmOtp from "./routes/ForgetPasswordConfirmOtp/ForgetPasswordConfirmOtp";
+import ForgetPasswordEmail from "./routes/ForgetPasswordEmail/ForgetPasswordEmail";
+import ForgetPasswordResetPass from "./routes/ForgetPasswordResetPass/ForgetPasswordResetPass";
+
+import Error404 from "./routes/Error404/Error404";
+
 export default function App() {
   const router = createBrowserRouter([
     {
@@ -105,63 +98,63 @@ export default function App() {
         {
           path: "/login",
           element: (
-            <Suspense fallback={<Spinner />}>
-              <InverseProtectedRoute>
-                <Login />
-              </InverseProtectedRoute>
-            </Suspense>
+
+            <InverseProtectedRoute>
+              <Login />
+            </InverseProtectedRoute>
+
           ),
         },
         {
           path: "/register",
           element: (
-            <Suspense fallback={<Spinner />}>
-              <InverseProtectedRoute>
-                <Register />
-              </InverseProtectedRoute>
-            </Suspense>
+
+            <InverseProtectedRoute>
+              <Register />
+            </InverseProtectedRoute>
+
           ),
         },
         {
           path: "/forget-password-email",
           element: (
-            <Suspense fallback={<Spinner />}>
-              <InverseProtectedRoute>
-                <ForgetPasswordEmail />
-              </InverseProtectedRoute>
-            </Suspense>
+
+            <InverseProtectedRoute>
+              <ForgetPasswordEmail />
+            </InverseProtectedRoute>
+
           ),
         },
         {
           path: "/forget-password-otp",
           element: (
-            <Suspense fallback={<Spinner />}>
-              <InverseProtectedRoute>
-                <ForgetPasswordConfirmOtp />
-              </InverseProtectedRoute>
-            </Suspense>
+
+            <InverseProtectedRoute>
+              <ForgetPasswordConfirmOtp />
+            </InverseProtectedRoute>
+
           ),
         },
         {
           path: "/forget-password-reset",
           element: (
-            <Suspense fallback={<Spinner />}>
-              <InverseProtectedRoute>
-                <ForgetPasswordResetPass />
-              </InverseProtectedRoute>
-            </Suspense>
+
+            <InverseProtectedRoute>
+              <ForgetPasswordResetPass />
+            </InverseProtectedRoute>
+
           ),
         },
         {
           path: "/EmailConfirmOtp",
           element: (
-            <Suspense fallback={<Spinner />}>
-              <EmailConfirmOtp />
-            </Suspense>
+
+            <EmailConfirmOtp />
+
           ),
         },
       ],
-      // errorElement: <Error404 />,
+      errorElement: <Error404 />,
     },
   ]);
   return (

@@ -8,6 +8,7 @@ import style from "./RepairRequest.module.css";
 import ApiManager from "../../Utilies/ApiManager";
 import { authContext } from "../../Contexts/authContext";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function RepairRequest() {
   const [responseFlag, setResponseFlag] = useState(false);
@@ -18,6 +19,7 @@ export default function RepairRequest() {
   const [locationError, setLocationError] = useState("");
   const [mapUrl, setMapUrl] = useState("");
   const { isRegistered, token } = useContext(authContext);
+  const navigate = useNavigate();
 
   // Request location on component mount
   useEffect(() => {
@@ -29,10 +31,8 @@ export default function RepairRequest() {
     if (userLocation) {
       const { latitude, longitude } = userLocation;
       setMapUrl(
-        `https://www.openstreetmap.org/export/embed.html?bbox=${
-          longitude - 0.01
-        },${latitude - 0.01},${longitude + 0.01},${
-          latitude + 0.01
+        `https://www.openstreetmap.org/export/embed.html?bbox=${longitude - 0.01
+        },${latitude - 0.01},${longitude + 0.01},${latitude + 0.01
         }&layer=mapnik&marker=${latitude},${longitude}`
       );
     }
@@ -115,17 +115,22 @@ export default function RepairRequest() {
     problemDescription: Yup.string()
       .min(10, "Description must be at least 10 characters")
       .required("Problem description is required"),
-    locationDescription: Yup.string(),
+    locationDescription: Yup.string().required("Location description is required"),
   });
 
   // Form submission handler
   const submitRepairRequest = async (values) => {
+
     if (!isRegistered) {
       Swal.fire({
         title: "Please Register First",
         text: "You need to register before booking a repair.",
         icon: "warning",
         confirmButtonText: "OK",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
       });
       return;
     }
@@ -161,8 +166,7 @@ export default function RepairRequest() {
       setResMessage({
         flag: false,
         message:
-          error.response?.data?.message ||
-          "Something went wrong. Please try again later.",
+          "Something went wrong. Please try again later."
       });
     } finally {
       setResponseFlag(false);
@@ -225,7 +229,21 @@ export default function RepairRequest() {
               idx={1}
             />
           </div>
-          
+          <div className="mb-4">
+            <Textarea
+              myFormik={formik}
+              inputName="locationDescription"
+              inputText="Describe your location"
+              icon="fa-map-marker"
+              error={formik.errors.locationDescription}
+              touched={formik.touched.locationDescription}
+              onChange={formik.handleChange}
+              defaultValue={formik.values.locationDescription}
+              disabled={responseFlag}
+              idx={2}
+            />
+          </div>
+
           <div className="row mt-4 align-items-stretch">
             <div className="col-md-6 mb-4">
               <p className={style.sectionLabel}>
@@ -351,9 +369,8 @@ export default function RepairRequest() {
           </button>
           {resMessage.message && (
             <div
-              className={`mt-3 ${
-                resMessage.flag ? style.successMessage : style.errorMessage
-              }`}
+              className={`mt-3 ${resMessage.flag ? style.successMessage : style.errorMessage
+                }`}
             >
               {resMessage.message}
             </div>

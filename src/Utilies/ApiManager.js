@@ -428,6 +428,10 @@ export default class ApiManager {
       formData.append("Images", file);
     });
 
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
+
     const response = await axios.post(`${baseUrl}/repair-request`, formData, {
       headers: getHeaders(token),
     });
@@ -439,7 +443,7 @@ export default class ApiManager {
    * Get Repair Requests
    * @param {string} token
    * @returns {Promise<object>}
-   */
+   */ 
   static async getRepairRequests(token) {
     const response = await axios.get(`${baseUrl}/repair-request`, {
       headers: {
