@@ -10,7 +10,6 @@ import Contact from "./routes/Contact/Contact";
 import RepairRequest from "./routes/RepairRequest/RepairRequest";
 import Products from "./routes/Products/Products";
 import Home from "./routes/Home/Home";
-import Spinner from "./Components/Ui/Spinner/Spinner";
 import HomeContentProvider from "./Contexts/homeContentContext";
 import MyOrders from "./routes/MyOrders/MyOrders";
 import MyRepairRequests from "./routes/MyRepairRequests/MyRepairRequests";
@@ -31,6 +30,7 @@ import ForgetPasswordEmail from "./routes/ForgetPasswordEmail/ForgetPasswordEmai
 import ForgetPasswordResetPass from "./routes/ForgetPasswordResetPass/ForgetPasswordResetPass";
 
 import Error404 from "./routes/Error404/Error404";
+import Profile from "./routes/Profile/Profile";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -65,6 +65,14 @@ export default function App() {
         {
           path: "/product/:id",
           element: <ProductDetails />,
+        },
+        {
+          path: "/Profile",
+          element: (
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/Cart",
