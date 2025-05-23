@@ -212,8 +212,8 @@ export default function App() {
  *                - Verify Otp
  *                - Reset Password
  *      - verify Email (protected) Done ✅
- *      - Error 404
- *      - Profile
+ *      - Error 404 Done ✅
+ *      - Profile (protected) Done ✅
  *      - Cart Done ✅
  *      - My Orders Done ✅
  *      - My Orders Details Done ✅
