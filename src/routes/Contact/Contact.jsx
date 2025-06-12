@@ -111,6 +111,7 @@ export default function Contact() {
       text: "456 Auto Lane, Cairo, Egypt",
     },
   ];
+
   return (
     <section id="Contact" className={"container  " + style.contact}>
       <div className="row justify-content-between">

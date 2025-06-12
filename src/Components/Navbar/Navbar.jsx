@@ -97,13 +97,14 @@ const Navbar = () => {
       )
     );
     // Add padding to the body to prevent the content from being hidden behind the navbar when the page is scrolled
+    const rootElement = document.getElementById("root");
     if (!isMobile) {
-      document.body.style.paddingTop = navBar.current.clientHeight + "px";
+      rootElement.style.paddingTop = navBar.current.clientHeight + "px";
     } else {
-      document.body.style.paddingTop = "0px";
+      rootElement.style.paddingTop = "0px";
     }
     return () => {
-      document.body.style.paddingTop = "0px";
+      rootElement.style.paddingTop = "0px";
     };
   }, []);
   useEffect(() => {

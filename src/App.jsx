@@ -1,6 +1,5 @@
-// بتبدل بين الصفحات 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-//Swiper
+
 
 import RoutLayout from "./routes/RoutLayout/RoutLayout";
 import About from "./routes/About/About";
@@ -165,6 +164,10 @@ export default function App() {
       errorElement: <Error404 />,
     },
   ]);
+  // Function Component 
+  // return Jsx Code
+  // JSX Code convert into Html by Babel
+  // Package.json
   return (
     <AuthProvider>
       <IsMobileProvider>
@@ -181,9 +184,9 @@ export default function App() {
 
 /**
  * *** App Structure ***
- * Contexts
+ * Contexts <state management/>
  *      - AuthContext Done ✅
- *      - CartContext Done ✅
+ *      - BasketContext Done ✅
  *      - IsMobileContext Done ✅
  *      - HomeContentContext Done ✅
  * Main Component
@@ -193,10 +196,10 @@ export default function App() {
  *     - ProfileIcon Done ✅
  *     - ScrollToTop Done ✅
  *     - Spinner Done ✅
- *     - ProtectedRoute Done ✅
- *     - InverseProtectedRoute Done ✅
+ *     - ProtectedRoute Done  // have to register✅
+ *     - InverseProtectedRoute Done // not register ✅
  *     -mobileMenu
- * routes
+ * routes (pages)
  *      - Home
  *      - About (protected) Done ✅
  *      - Products (protected) Done ✅
@@ -205,8 +208,8 @@ export default function App() {
  *      - Product Details
  *      - Product Description
  *      - Contact (protected) Done ✅
- *      -Login (protected) Done ✅
- *      -Register (protected) Done ✅
+ *      - Login (protected) Done ✅
+ *      - Register (protected) Done ✅
  *      - Forget Password Email (protected) Done ✅
  *                - send Otp
  *                - Verify Otp

@@ -94,7 +94,6 @@ const Products = () => {
 
   // Update products when filters or pagination changes
   useEffect(() => {
-    const token = localStorage.getItem("token") || "";
     fetchProducts(token);
   }, [filters, currentPage]);
 

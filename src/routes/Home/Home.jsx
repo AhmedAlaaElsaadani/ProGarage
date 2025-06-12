@@ -19,7 +19,7 @@ export default function Home() {
           <Hero products={homeContent.products} />
           {/* Our Services  */}
           <OurServices servicesData={homeContent.services} />
-          {/* Our Cate */}
+          {/* Our Categories */}
           <HomeScrollBar categories={homeContent.productCategories} />
           {/* Ask For Repair  */}
           <AskForRepair />

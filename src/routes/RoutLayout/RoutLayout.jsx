@@ -4,26 +4,28 @@ import ScrollToTop from "../../Components/Ui/ScrollToTop/ScrollToTop";
 import { IsMobileContext } from "../../Contexts/IsMobileContext.jsx";
 import Navbar from "../../Components/Navbar/Navbar";
 import WhatsappComponent from "../../Components/Ui/WhatsappComponent/WhatsappComponent";
-import Spinner from "../../Components/Ui/Spinner/Spinner";
 import Footer from "../../Components/Footer/Footer.jsx";
 import { authContext } from "../../Contexts/authContext.jsx";
 import ProfileIcon from "../../Components/Ui/ProfileIcon/ProfileIcon.jsx";
+import MobileNav from "../../Components/Ui/MobileNav/MobileNav.jsx";
 
 export default function RoutLayout() {
-  // const { isMobile } = useContext(IsMobileContext);
+  const { isMobile } = useContext(IsMobileContext);
   const { isRegistered } = useContext(authContext);
 
   return (
     <>
       {/* Scroll to top */}
       <ScrollToTop />
-
-      {/* <Suspense fallback={<Spinner sectionFlag={false} />}> */}
-      <Navbar />
+      {isMobile ? <MobileNav /> : <Navbar />}
       <WhatsappComponent />
       {isRegistered && <ProfileIcon />}
-      {/* </Suspense> */}
+
+
+      {/* Content which appeared to user */}
       <Outlet />
+
+
       <Footer />
     </>
   );

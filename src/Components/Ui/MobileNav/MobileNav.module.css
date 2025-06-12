@@ -1,16 +1,18 @@
 .mobile {
   font-size: 16px;
-  margin-top: 40px;
   position: relative;
 }
 .navbar {
-  background-color: var(--nav-bg-color) !important ;
+  background-color: var(--second-color) !important ;
   z-index: 999;
   margin-top: 20px;
   height: 60px;
 }
 
 
+.navbar a:focus-visible {
+  box-shadow: none;
+}
 .fixedButton {
   z-index: 1000;
   bottom: calc(60px + 1rem); /* Place it above the Mobilenav */
@@ -26,7 +28,7 @@
 }
 .full_screen {
   z-index: 10001;
-  background-color: var(--nav-bg-color) !important ;
+  background-color: var(--prim-color) !important ;
   width: 100vw;
   height: calc(100vh - 60px); /* Full height minus the navbar */
   top: 0;
@@ -46,11 +48,8 @@
 .close_aside {
   font-size: 1.5rem;
 }
-.spancolor {
-  color: #0094ff !important;
-}
 .list-links a {
-  color: var(--nav-link-color);
+  color: white;
   text-align: center;
   font-size: 0.7em;
   font-weight: 700;
@@ -59,12 +58,12 @@
   padding-bottom: 0;
 }
 .list-links a.selected {
-  color: var(--primary) !important;
+  color: var(--prim-color) !important;
 
-  /* border-bottom: 2px solid var(--primary); */
+  /* border-bottom: 2px solid var(--prim-color); */
 }
 .list-links a:hover {
-  color: var(--primary) !important;
+  color: var(--prim-color) !important;
 }
 
 li {
@@ -75,7 +74,7 @@ ul li {
   margin-bottom: 5px;
 }
 ul li a {
-  color: var(--nav-link-color) !important ;
+  color: #fff !important ;
 }
 .minus {
   margin-right: -9px !important;
