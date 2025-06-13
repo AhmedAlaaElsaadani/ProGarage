@@ -88,6 +88,11 @@ const MobileNav = () => {
 
   const linksLoginRegister = [
     {
+      link: "Repair Request",
+      active: "repairRequest",
+      to: "repairRequest#repairRequest",
+    },
+    {
       link: "Login",
       active: "Login",
       to: "/Login",
